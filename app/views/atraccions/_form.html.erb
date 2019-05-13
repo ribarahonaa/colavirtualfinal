@@ -1,0 +1,40 @@
+<%= form_with(model: atraccion, local: true) do |form| %>
+  <% if atraccion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(atraccion.errors.count, "error") %> prohibited this atraccion from being saved:</h2>
+
+      <ul>
+      <% atraccion.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ <form  class="form-signin  "> 
+  <div class="field form-group">
+    <%= form.label :nombre_de_la_atraccion %>
+    <%= form.text_field :nombre_atc , class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :descripcion_de_la_atraccion %>
+    <%= form.text_area :descripcion_atc , class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :imagen_de_la_atraccion %>
+    <%= form.text_field :imagen_atc , class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label  :capacidad_de_la_atraccion %>
+    <%= form.number_field :capacidad_atc , class:"form-control"%>
+  </div>
+
+  <div class="actions form-group">
+    <%= form.submit 'Guardar', class: 'btn btn-primary btn-block'  %>
+  </div>
+
+  </form> 
+<% end %>
+ 

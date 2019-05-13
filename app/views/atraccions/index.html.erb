@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<h1 style="text-align:center;">Atracciones</h1>
+
+<table>
+  
+
+  <tbody>
+  <div class="container-fluid margen_conta">
+        <div class="row">
+         <% @atraccions.each do |atraccion| %>
+            <div class="col-sm-6 col-md-3 col-lg-3 margen_atra">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="<%= atraccion.imagen_atc %>" alt="<%= atraccion.nombre_atc %>" height="200" width="250" />
+                    <div class="card-body">
+                    
+                      <p>
+                        <strong>Nombre :</strong>
+                        <%= atraccion.nombre_atc %>
+                      </p>
+
+                      <p>
+                        <strong>Descripcion  :</strong>
+                        <%= atraccion.descripcion_atc %>
+                      </p>
+                      
+                      <p>
+                       <strong>Capacidad  :</strong>
+                        <%= atraccion.capacidad_atc %>
+                      </p>
+
+                      <% if admin?(current_user[:id]) || super?(current_user[:id])%>
+                        <%= link_to 'Editar', edit_atraccion_path(atraccion) , class: 'btn btn-primary btn-block'%>   
+                        <%= link_to 'Eliminar', atraccion, class: 'btn btn-primary btn-block', method: :delete, data: { confirm: 'Esta seguro?' } %>
+                      <% end %>
+                      <% if cliente?(current_user[:id])%>
+                        <%= link_to 'Encolarme', ticket_encolar_path(atraccion.id) , class: 'btn btn-primary btn-block' %>
+                      <% end %>
+                                  
+                      
+                    </div>  
+                </div>
+            </div>
+       
+             
+       <% end %>
+      </div>
+    </div> 
+
+
+  </tbody>
+</table>
+
+<br>
+<% if admin?(current_user[:id]) || super?(current_user[:id])%>
+<div class="boton_centro">
+<%= link_to 'Nueva Atraccion', new_atraccion_path , class: 'btn btn-primary' %>
+</div>
+<% end %>

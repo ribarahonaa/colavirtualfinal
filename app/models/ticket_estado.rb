@@ -1,0 +1,2 @@
+class TicketEstado < ApplicationRecord
+end

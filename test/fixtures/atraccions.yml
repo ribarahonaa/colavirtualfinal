@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre_atc: MyString
+  descripcion_atc: MyText
+  imagen_atc: MyString
+  capacidad_atc: 1
+
+two:
+  nombre_atc: MyString
+  descripcion_atc: MyText
+  imagen_atc: MyString
+  capacidad_atc: 1

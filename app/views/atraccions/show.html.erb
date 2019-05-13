@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+<div class="container ">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card" style="width: 20rem;">
+
+                      <img class="card-img-top" src="<%= @atraccion.imagen_atc %>" alt="<%= @atraccion.nombre_atc %>"  height="200" width="250" />
+                    
+                      <div class="card-body">
+                              
+                              <p >
+                                <strong >Nombre atc:</strong>
+                                <%= @atraccion.nombre_atc  %>
+                              </p>
+
+                              <p>
+                                <strong>Descripcion atc:</strong>
+                                <%= @atraccion.descripcion_atc %>
+                              </p>
+
+
+
+                              <p>
+                                <strong>Capacidad de la atraccion :</strong>
+                                <%= @atraccion.capacidad_atc %>
+                              </p>
+
+                              <%= link_to 'Editar', edit_atraccion_path(@atraccion), class: 'btn btn-primary btn-block' %> 
+                              <%= link_to 'inicio', atraccions_path , class: 'btn btn-primary btn-block' %>
+                              
+                        </div>
+                </div>
+            </div>
+        </div>
+</div> 

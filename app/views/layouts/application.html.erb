@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Colas Virtuales</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if current_user %>
+      <nav class="navbar navbar-expand-lg navbar-light fix-top" style="background-color: white;">
+        <a class="navbar-brand" href="<%= root_path %>">
+            <img class="imgLogo" alt="logo" width="150" height="100" class="d-inline-block align-top" src="<%= asset_path 'Fantasirow.PNG' %>"> 
+        </a>    
+        <ul class="nav navbar-nav ml-auto" > 
+            <li class=" nav-item dropdown active  ml-auto">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <h5>Bienvenido <%= current_user[:name]%></h5>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <%= link_to "Inicio", root_path, class: 'nav-link' %> 
+                <% if cliente?(current_user[:id]) %>
+                  <%= link_to 'Mis Colas', '#', class: 'nav-link' %>
+                  <%= link_to 'Atracciones', atraccions_path, class: 'nav-link' %>
+                <% end %>
+                <% if supervisor?(current_user[:id])%>
+                  <%= link_to 'Atraccion Asignada', '#', class: 'nav-link' %>
+                <% end %>
+                <% if admin?(current_user[:id]) || super?(current_user[:id])%>
+                  <%= link_to "Ver Atracciones", atraccions_path, class: 'nav-link' %> 
+                  <%= link_to 'Nueva Atraccion', new_atraccion_path , class: 'nav-link' %>
+                  <%= link_to 'Editar Supervisores', '#', class: 'nav-link' %>
+                <% end %>
+                <% if gestor?(current_user[:id]) || super?(current_user[:id])%>
+                  <%= link_to 'Informes', '#', class: 'nav-link' %>
+                <% end %>
+                  <%= link_to "Editar Cuenta", edit_user_registration_path, class: 'nav-link' %>
+                  <%= link_to "Cerrar Sesion", destroy_user_session_path, :method => :delete , class: 'nav-link' %>
+              </div>
+            </li> 
+        </ul>
+      </nav>
+    <% end %>
+    <%= yield %>
+  </body>
+  <!--Bootstrap-->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</html>
