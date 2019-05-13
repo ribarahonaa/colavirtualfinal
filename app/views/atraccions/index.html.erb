@@ -34,7 +34,7 @@
                         <%= link_to 'Eliminar', atraccion, class: 'btn btn-primary btn-block', method: :delete, data: { confirm: 'Esta seguro?' } %>
                       <% end %>
                       <% if cliente?(current_user[:id])%>
-                        <%= link_to 'Encolarme', ticket_encolar_path(atraccion.id) , class: 'btn btn-primary btn-block' %>
+                        <%= link_to 'Encolarme', {controller: "ticket", action: "encolar", id: atraccion.id} , class: 'btn btn-primary btn-block' %>
                       <% end %>
                                   
                       

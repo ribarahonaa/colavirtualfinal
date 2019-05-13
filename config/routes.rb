@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   #ruta a index
   root to: 'usuario#index'
   #ruta a encolarse
-  post 'ticket/encolar'
+  get 'ticket/encolar'
 end

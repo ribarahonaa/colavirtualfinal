@@ -1,6 +1,6 @@
 class TicketController < ApplicationController
 
-    def encolar(id)
+    def encolar
         @ticket = Ticket.create()
         #Una vez creado el ticket se procede a lo siguiente:
             #Define el estado del ticket
@@ -11,7 +11,7 @@ class TicketController < ApplicationController
           #Define la atraccion y el usuario del ticket
             @operacion = OperacionesAtraccion.new
             @operacion.users_id = current_user[:id]
-            @operacion.atraccions_id = id
+            @operacion.atraccions_id = params[:id]
             @operacion.tickets_id = @ticket.id
             @operacion.save
         redirect_to root_path
