@@ -22,7 +22,9 @@
     </div>
 <% else %>
     <% if cliente?(current_user[:id])%>
-        <h1>Cliente</h1>
+        <h1>Mis Colas</h1>
+        <% @operacion = OperacionesAtraccion.where("users_id = #{current_user[:id]}").count %>
+        <p> Estas encoolado en <%= @operacion%> atraccion(es)</p>
     <% end %>
     <% if supervisor?(current_user[:id])%>
         <h1>Supervisor</h1>
