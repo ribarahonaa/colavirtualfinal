@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   root to: 'usuario#index'
   #ruta a encolarse
   get 'ticket/encolar'
+  get 'ticket/cambiar_estado'
 end

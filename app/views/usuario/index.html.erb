@@ -25,9 +25,39 @@
         <h1>Mis Colas</h1>
         <% @operacion = OperacionesAtraccion.where("users_id = #{current_user[:id]}").count %>
         <p> Estas encolado en <%= @operacion%> atraccion(es)</p>
+        <% @operaciones = OperacionesAtraccion.where("users_id = #{current_user[:id]}")%>
+        <% @operaciones.each do |op| %>
+            <% @atraccion = Atraccion.find(op.atraccions_id) %>
+            <%= @atraccion.nombre_atc %>
+            <%# @atraccion.imagen_atc %>
+            <% @estadoticket = TicketEstado.where("tickets_id = #{op.tickets_id}").last%>
+            <%= op.tickets_id %>
+            <% @estado = Estado.find(@estadoticket.estados_id) %>
+            <%= @estado.descripcion_est%>
+            <%= link_to "Cambiar", {controller: "ticket", action: "cambiar_estado", estado: 5, ticket: op.tickets_id },class: 'btn btn-primary'%>
+            <br>
+        <% end %>
+        
+
     <% end %>
     <% if supervisor?(current_user[:id])%>
-        <h1>Supervisor</h1>
+        <h1>Tickets de Atraccion</h1>
+        <% @supervisor = OperacionesAtraccion.all%>
+        <% @supervisor.each do |sp| %>
+            <% @atr = Atraccion.find(sp.atraccions_id) %>
+            <%= @atr.nombre_atc %>
+            <%= sp.tickets_id %>
+            <% @tktest = TicketEstado.where("tickets_id = #{sp.tickets_id}").last %>
+            <% @est = Estado.find(@tktest.estados_id)  %>
+            <%= @est.descripcion_est %>
+            <% @state = Estado.all %>
+            <select name="estado">
+                <% @state.each do |st| %>
+                    <option value="<%= st.id %>"><%= st.descripcion_est%></option>
+                <% end %>
+            </select>
+            <%# link_to "Cambiar", {controller: "ticket", action: "cambiar_estado", :estado => estado, ticket: sp.tickets_id },class: 'btn btn-primary'%>
+        <% end %>
     <% end %>
     <% if admin?(current_user[:id])%>
         <h1>Administrador</h1>

@@ -7,4 +7,9 @@ class User < ApplicationRecord
   #grupos de usuarios
   groupify :named_group_member
   groupify :group_member
+
+  #relaciones de OperacionAtracciones
+  # has_many :operaciones_atraccions
+  # has_many :atraccions, through: :operaciones_atraccions
+  # has_many :tickets, through: :operaciones_atraccions
 end

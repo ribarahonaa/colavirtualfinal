@@ -23,4 +23,14 @@ class TicketController < ApplicationController
         end
     end
 
+    def cambiar_estado
+
+        @estado = TicketEstado.new
+        @estado.estados_id = params[:estado]
+        @estado.tickets_id = params[:ticket]
+        @estado.save
+        redirect_to root_path
+        
+    end
+
 end
