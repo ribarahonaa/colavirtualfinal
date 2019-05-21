@@ -23,18 +23,16 @@
 <% else %>
     <% if cliente?(current_user[:id])%>
         <h1>Mis Colas</h1>
-        <% @operacion = OperacionesAtraccion.where("users_id = #{current_user[:id]}").count %>
-        <p> Estas encolado en <%= @operacion%> atraccion(es)</p>
         <% @operaciones = OperacionesAtraccion.where("users_id = #{current_user[:id]}")%>
         <% @operaciones.each do |op| %>
-            <% @atraccion = Atraccion.find(op.atraccions_id) %>
+            <label>Atraccion: <% @atraccion = Atraccion.find(op.atraccions_id) %></label>
             <%= @atraccion.nombre_atc %>
             <%# @atraccion.imagen_atc %>
             <% @estadoticket = TicketEstado.where("tickets_id = #{op.tickets_id}").last%>
-            <%= op.tickets_id %>
+            <label>Numero de Ticket: <%= op.tickets_id %></label>
             <% @estado = Estado.find(@estadoticket.estados_id) %>
             <%= @estado.descripcion_est%>
-            <%= link_to "Cambiar", {controller: "ticket", action: "cambiar_estado", estado: 5, ticket: op.tickets_id },class: 'btn btn-primary'%>
+            <%= link_to "Salir de la Cola", {controller: "ticket", action: "cambiar_estado", estado: 5, ticket: op.tickets_id },class: 'btn btn-primary'%>
             <br>
         <% end %>
         
@@ -50,13 +48,23 @@
             <% @tktest = TicketEstado.where("tickets_id = #{sp.tickets_id}").last %>
             <% @est = Estado.find(@tktest.estados_id)  %>
             <%= @est.descripcion_est %>
-            <% @state = Estado.all %>
-            <select name="estado">
-                <% @state.each do |st| %>
-                    <option value="<%= st.id %>"><%= st.descripcion_est%></option>
+            <% @state = Estado.where("descripcion_est != 'Abortado' and descripcion_est !=  'Encolado' ") %>
+                <select id="estados">
+                    <% @state.each do |st| %>
+                        <option value="<%= st.id %>"><%= st.descripcion_est%></option>
+                    <% end %>
+                </select>
+                <button class= 'btn btn-primary' type="submit"> Cambiar Estado
+                <%= form_for(:ticket ,controller: "ticket", action: "cambiar_estado") do |f| %>
+                    <div class="actions">
+                        <%= f.text_field :estado , id: "estado" , type: "hidden"%>
+                        <%= f.text_field :ticket, value: sp.tickets_id , type: "hidden"%>
+                        <%= f.submit "", type: "hidden"%>
+                    </div>
                 <% end %>
-            </select>
-            <%# link_to "Cambiar", {controller: "ticket", action: "cambiar_estado", :estado => estado, ticket: sp.tickets_id },class: 'btn btn-primary'%>
+                </button>
+                <%# link_to "Cambiar", {controller: "ticket", action: "cambiar_estado", estado: :estados, ticket: sp.tickets_id },class: 'btn btn-primary'%>
+                <br>
         <% end %>
     <% end %>
     <% if admin?(current_user[:id])%>
@@ -69,3 +77,13 @@
         <h1>Super Usuario</h1>
     <% end %>
 <% end %>
+
+<script>
+function setEstado(){
+    document.getElementById("estado").value = $("#estados").val()
+    console.log($("#estado").val())
+}
+if (document.getElementById("estado")){
+    setInterval(setEstado,500)
+}
+</script>
