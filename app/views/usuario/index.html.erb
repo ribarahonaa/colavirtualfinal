@@ -54,15 +54,6 @@
                         <option value="<%= st.id %>"><%= st.descripcion_est%></option>
                     <% end %>
                 </select>
-                <button class= 'btn btn-primary' type="submit"> Cambiar Estado
-                <%= form_for(:ticket ,controller: "ticket", action: "cambiar_estado") do |f| %>
-                    <div class="actions">
-                        <%= f.text_field :estado , id: "estado" , type: "hidden"%>
-                        <%= f.text_field :ticket, value: sp.tickets_id , type: "hidden"%>
-                        <%= f.submit "", type: "hidden"%>
-                    </div>
-                <% end %>
-                </button>
                 <%# link_to "Cambiar", {controller: "ticket", action: "cambiar_estado", estado: :estados, ticket: sp.tickets_id },class: 'btn btn-primary'%>
                 <br>
         <% end %>
@@ -79,11 +70,11 @@
 <% end %>
 
 <script>
-function setEstado(){
-    document.getElementById("estado").value = $("#estados").val()
-    console.log($("#estado").val())
-}
-if (document.getElementById("estado")){
-    setInterval(setEstado,500)
-}
+// function setEstado(){
+//     document.getElementById("estado").value = $("#estados").val()
+//     console.log($("#estado").val())
+// }
+// if (document.getElementById("estado")){
+//     setInterval(setEstado,500)
+// }
 </script>
