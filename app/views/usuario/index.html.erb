@@ -33,7 +33,7 @@
             <label>Numero de Ticket: <%= op.tickets_id %></label>
             <% @estado = Estado.find(@estadoticket.estados_id) %>
             <%= @estado.descripcion_est%>
-            <%= link_to "Salir de la Cola", {controller: "ticket", action: "cambiar_estado", estado: 5, ticket: op.tickets_id },class: 'btn btn-primary'%>
+            <%= link_to "Salir de la Cola <i class='far fa-times-circle'></i>".html_safe, {controller: "ticket", action: "cambiar_estado", estado: 5, ticket: op.tickets_id },class: 'btn btn-primary'%>
             <br>
         <% end %>
 
