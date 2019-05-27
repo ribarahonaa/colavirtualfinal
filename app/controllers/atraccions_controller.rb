@@ -69,6 +69,6 @@ class AtraccionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def atraccion_params
-      params.require(:atraccion).permit(:nombre_atc, :descripcion_atc, :imagen_atc, :capacidad_atc)
+      params.require(:atraccion).permit(:nombre_atc, :descripcion_atc, :imagen_atc, :capacidad_atc, :latitude, :longitude)
     end
 end

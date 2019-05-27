@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   #ruta a encolarse
   get 'ticket/encolar'
   get 'ticket/cambiar_estado'
+  #ruta a mapa
   get 'usuario/map'
 end

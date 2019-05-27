@@ -37,14 +37,14 @@
     <%= form.number_field :capacidad_atc , class:"form-control"%>
   </div>
   
-  <div class="field hidden">
+  <div class="field form-group">
     <%= form.label :latitude %>
-    <%= form.text_field :latitude %>
+    <%= form.text_field :latitude, readonly: true, class:"form-control" %>
   </div>
 
-  <div class="field hidden ">
+  <div class="field form-group">
     <%= form.label :longitude %>
-    <%= form.text_field :longitude %>
+    <%= form.text_field :longitude, readonly: true, class:"form-control" %>
   </div>
   
   <div id="map_wrapper">
