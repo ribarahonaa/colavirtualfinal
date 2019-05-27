@@ -9,7 +9,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <!--API google maps-->
+    <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key=+AIzaSyBnUY6LMIfRXdmG4brVQZMsFGAkUO3_lDk' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= yield(:head_tags) %>
   </head>
 
   <body>
@@ -26,7 +29,7 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <%= link_to "Inicio", root_path, class: 'nav-link' %> 
                 <% if cliente?(current_user[:id]) %>
-                  <%= link_to 'Mis Colas', '#', class: 'nav-link' %>
+                  <%= link_to 'Mapa', usuario_map_path, class: 'nav-link' %>
                   <%= link_to 'Atracciones', atraccions_path, class: 'nav-link' %>
                 <% end %>
                 <% if supervisor?(current_user[:id])%>

@@ -36,7 +36,6 @@
             <%= link_to "Salir de la Cola", {controller: "ticket", action: "cambiar_estado", estado: 5, ticket: op.tickets_id },class: 'btn btn-primary'%>
             <br>
         <% end %>
-        
 
     <% end %>
     <% if supervisor?(current_user[:id])%>

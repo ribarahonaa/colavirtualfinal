@@ -1,3 +1,9 @@
+<% provide :head_tags do %>
+  <meta name='turbolinks-visit-control' content='reload'>
+  <script>
+      document.addEventListener("DOMContentLoaded", initMap2);
+  </script>
+<% end %>
 <%= form_with(model: atraccion, local: true) do |form| %>
   <% if atraccion.errors.any? %>
     <div id="error_explanation">
@@ -29,6 +35,20 @@
   <div class="field form-group">
     <%= form.label  :capacidad_de_la_atraccion %>
     <%= form.number_field :capacidad_atc , class:"form-control"%>
+  </div>
+  
+  <div class="field hidden">
+    <%= form.label :latitude %>
+    <%= form.text_field :latitude %>
+  </div>
+
+  <div class="field hidden ">
+    <%= form.label :longitude %>
+    <%= form.text_field :longitude %>
+  </div>
+  
+  <div id="map_wrapper">
+    <div id="map2"></div>
   </div>
 
   <div class="actions form-group">
