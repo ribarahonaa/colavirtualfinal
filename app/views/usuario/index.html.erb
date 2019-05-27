@@ -54,7 +54,11 @@
                         <option value="<%= st.id %>"><%= st.descripcion_est%></option>
                     <% end %>
                 </select>
-                <%# link_to "Cambiar", {controller: "ticket", action: "cambiar_estado", estado: :estados, ticket: sp.tickets_id },class: 'btn btn-primary'%>
+                <form action="<%=ticket_cambiar_estado_path%>" method= 'get'>
+                    <%= text_field_tag :estado,'' ,id: "estado", type:"hidden" %>
+                    <%= text_field_tag :ticket,'' , value: sp.tickets_id ,type:"hidden"%>
+                    <%= submit_tag "Cambiar", class: "btn btn-primary" %>
+                </form>
                 <% @user = User.find(sp.users_id) %>
                 <a href="https://web.whatsapp.com/send?phone=<%= @user.phone %>&text=Hola,%20<%= @user.name %>%20dirigete%20a%20la%20atraccion:%20<%=@atr.nombre_atc %>,%20que%20estas%20proximo%20a%20ser%20atendido." target='_blank' class= 'btn btn-primary'>
                     Contactar <i class='fab fa-whatsapp'></i>
@@ -74,11 +78,11 @@
 <% end %>
 
 <script>
-// function setEstado(){
-//     document.getElementById("estado").value = $("#estados").val()
-//     console.log($("#estado").val())
-// }
-// if (document.getElementById("estado")){
-//     setInterval(setEstado,500)
-// }
+function setEstado(){
+    document.getElementById("estado").value = $("#estados").val()
+}
+if(document.getElementById("estado"))
+{
+    setInterval(setEstado,500)
+}
 </script>
