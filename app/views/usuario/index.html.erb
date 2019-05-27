@@ -56,6 +56,10 @@
                     <% end %>
                 </select>
                 <%# link_to "Cambiar", {controller: "ticket", action: "cambiar_estado", estado: :estados, ticket: sp.tickets_id },class: 'btn btn-primary'%>
+                <% @user = User.find(sp.users_id) %>
+                <a href="https://web.whatsapp.com/send?phone=<%= @user.phone %>&text=Hola,%20<%= @user.name %>%20dirigete%20a%20la%20atraccion:%20<%=@atr.nombre_atc %>,%20que%20estas%20proximo%20a%20ser%20atendido." target='_blank' class= 'btn btn-primary'>
+                    Contactar <i class='fab fa-whatsapp'></i>
+                </a>
                 <br>
         <% end %>
     <% end %>
