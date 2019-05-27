@@ -1,7 +1,7 @@
 <% if !current_user %>
-    <div class="container-login100" style="background-image: url(<%= asset_path 'descarga.jpg' %>) ;">
+    <div class="container-login100" >
                 <div class="wrap-login100 ">
-                        <img class=""  alt="logo" src="<%= asset_path 'Fantasirow.PNG' %>"> 
+                        <img class="imagen"  alt="logo" src="<%= asset_path 'Fantasirow.PNG' %>"> 
                     
                         <form  class="login100-form"> 
                             <div class="container-login100-form-btn" >
@@ -23,7 +23,7 @@
         </div>
 <% else %>
     <% if cliente?(current_user[:id])%>
-        <h1>Mis Colas</h1>
+        <h1 style="text-align: center;">Mis Colas</h1>
         <% @operaciones = OperacionesAtraccion.where("users_id = #{current_user[:id]}")%>
         <% @operaciones.each do |op| %>
             <label>Atraccion: <% @atraccion = Atraccion.find(op.atraccions_id) %></label>

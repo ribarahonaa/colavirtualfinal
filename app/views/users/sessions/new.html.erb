@@ -2,47 +2,46 @@
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
- <div class="container ">
-        <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                <div class="card card-signin my-5">
-
-                      <img src="<%= asset_path 'Fantasirow.PNG' %>" class="card-img" alt="...">
-                    <div class="card-body">
+ <div class="container-login100" >
+                <div class="wrap-login100 ">
+                        <img class="imagen"  alt="logo" src="<%= asset_path 'Fantasirow.PNG' %>"> 
+                    
                           <h2 style="text-align:center;">Iniciar Sesion</h2>
-                    <form  class="form-signin  "> 
+                    <form  class="login100-form"> 
+
                           <div class="field form-group " >
-                            <%= f.label "Correo",class:"col-form-label" %>
+                            <%= f.label "Correo",class:"col-form-label " %>
                             <%= f.email_field :email, autofocus: true, autocomplete: "email" , class:"form-control" %>
                           </div>
 
                           <div class="field form-group" >
-                            <%= f.label "Contraseña",class:"col-form-label" %>
+                            <%= f.label "Contraseña",class:"col-form-label input" %>
                             <%= f.password_field :password, autocomplete: "current-password", class:"form-control" %>
                           </div>
 
                           <% if devise_mapping.rememberable? %>
                             <div class="field form-group " style="margin-left:10%">
-                              <%= f.check_box :remember_me ,class:"form-check-input" %>
-                              <%= f.label "Recuerdame" , class:"form-check-label"%>
+                              <%= f.check_box :remember_me ,class:"form-check-input " %>
+                              <%= f.label "Recuerdame" , class:"form-check-label input"%>
                             </div>
                           <% end %>
                             
-                                <div class="actions form-group  " >
-                                  <%= f.submit "Iniciar Sesion", class: 'btn btn-primary btn-block' %>
-
+                                <div class="container-login100-form-btn" >
+                                  <div class="wrap-login100-form-btn">
+                                      <%= f.submit "Iniciar Sesion", class: 'btn btn-primary btn-block login100-form-btn' %>
+                                  </div>
                                 </div >
-                                <div class="actions form-group " >
-                                  <%= link_to 'Registrarme', new_user_registration_path , class: 'btn btn-primary btn-block'%>
-                
+
+                                <div class="container-login100-form-btn" >
+                                  <div class="wrap-login100-form-btn">
+                                    <%= link_to 'Registrarme', new_user_registration_path , class: 'btn btn-primary btn-block login100-form-btn'%>
+                                  </div>
                                 </div >
                                            
                     </form>                
-                    </div>
                 </div>
-            </div>
-        </div>
-    </div>      
+  </div>
+                 
 
 <% end %>
 
