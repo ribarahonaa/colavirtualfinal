@@ -1,12 +1,11 @@
 <p id="notice"><%= notice %></p>
-<div class="container ">
-        <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                <div class="card" style="width: 20rem;">
+<div class="container-login100" >
+                <div class="wrap-login2 ">
+                <div class="card" style="  background: rgba(255, 255, 255, 0.671);">
 
-                      <img class="card-img-top" src="<%= @atraccion.imagen_atc %>" alt="<%= @atraccion.nombre_atc %>"  height="200" width="250" />
+                      <img class="card-img-top imagen "  src="<%= @atraccion.imagen_atc %>" alt="<%= @atraccion.nombre_atc %>"  height="200" width="250" />
                     
-                      <div class="card-body">
+                      <div class="card-body login100-form">
                               
                               <p >
                                 <strong >Nombre atc:</strong>
@@ -24,12 +23,18 @@
                                 <strong>Capacidad de la atraccion :</strong>
                                 <%= @atraccion.capacidad_atc %>
                               </p>
-
-                              <%= link_to 'Editar', edit_atraccion_path(@atraccion), class: 'btn btn-primary btn-block' %> 
-                              <%= link_to 'inicio', atraccions_path , class: 'btn btn-primary btn-block' %>
-                              
+                            <div class="container-login100-form-btn" >
+                                <div class="wrap-login100-form-btn">
+                                    <%= link_to 'Editar', edit_atraccion_path(@atraccion), class: 'btn btn-primary btn-block login100-form-btn' %> 
+                                 </div>
+                            </div>
+                            <div class="container-login100-form-btn" >
+                                <div class="wrap-login100-form-btn">
+                                     <%= link_to 'inicio', atraccions_path , class: 'btn btn-primary btn-block login100-form-btn' %>
+                               </div>
+                            </div>
                         </div>
                 </div>
             </div>
         </div>
-</div> 
+ 

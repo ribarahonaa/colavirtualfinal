@@ -12,8 +12,7 @@
                             </div> 
 
                              <div class="container-login100-form-btn" >
-                                 <div class="wrap-login100-form-btn">
-                                    
+                                <div class="wrap-login100-form-btn">
                                     <%= link_to 'Registrarme', new_user_registration_path , class: ' btn btn-primary login100-form-btn'%>
                                 </div>
                             </div>       
@@ -23,9 +22,12 @@
         </div>
 <% else %>
     <% if cliente?(current_user[:id])%>
+    
         <h1 style="text-align: center;">Mis Colas</h1>
         <% @operaciones = OperacionesAtraccion.where("users_id = #{current_user[:id]}")%>
         <% @operaciones.each do |op| %>
+        <div class="container-login100" >
+                <div class="wrap-login100 ">
             <label>Atraccion: <% @atraccion = Atraccion.find(op.atraccions_id) %></label>
             <%= @atraccion.nombre_atc %>
             <%# @atraccion.imagen_atc %>
@@ -35,10 +37,14 @@
             <%= @estado.descripcion_est%>
             <%= link_to "Salir de la Cola <i class='far fa-times-circle'></i>".html_safe, {controller: "ticket", action: "cambiar_estado", estado: 5, ticket: op.tickets_id },class: 'btn btn-primary'%>
             <br>
+             </div>
+        </div>
         <% end %>
+       
 
     <% end %>
     <% if supervisor?(current_user[:id])%>
+    
         <h1>Tickets de Atraccion</h1>
         <% @supervisor = OperacionesAtraccion.all%>
         <% @supervisor.each do |sp| %>

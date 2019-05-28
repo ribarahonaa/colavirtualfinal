@@ -16,43 +16,45 @@
       </ul>
     </div>
   <% end %>
- <form  class="form-signin  "> 
+ <form  class="login100-form"> 
   <div class="field form-group">
-    <%= form.label :nombre_de_la_atraccion %>
+    <%= form.label :nombre_de_la_atraccion ,class:"input"%>
     <%= form.text_field :nombre_atc , class:"form-control" %>
   </div>
 
   <div class="field form-group">
-    <%= form.label :descripcion_de_la_atraccion %>
+    <%= form.label :descripcion_de_la_atraccion,class:"input" %>
     <%= form.text_area :descripcion_atc , class:"form-control" %>
   </div>
 
   <div class="field form-group">
-    <%= form.label :imagen_de_la_atraccion %>
+    <%= form.label :imagen_de_la_atraccion,class:"input" %>
     <%= form.text_field :imagen_atc , class:"form-control" %>
   </div>
 
   <div class="field form-group">
-    <%= form.label  :capacidad_de_la_atraccion %>
+    <%= form.label  :capacidad_de_la_atraccion,class:"input" %>
     <%= form.number_field :capacidad_atc , class:"form-control"%>
   </div>
   
   <div class="field form-group">
-    <%= form.label :latitude %>
+    <%= form.label :latitude,class:"input" %>
     <%= form.text_field :latitude, readonly: true, class:"form-control" %>
   </div>
 
   <div class="field form-group">
-    <%= form.label :longitude %>
-    <%= form.text_field :longitude, readonly: true, class:"form-control" %>
+    <%= form.label :longitude ,class:"input" %>
+    <%= form.text_field :longitude, readonly: true, class:"form-control " %>
   </div>
   
-  <div id="map_wrapper">
+  <div class="map_wrapper2" id="map_wrapper">
     <div id="map2"></div>
   </div>
 
-  <div class="actions form-group">
-    <%= form.submit 'Guardar', class: 'btn btn-primary btn-block'  %>
+  <div class="container-login100-form-btn" >
+      <div class="wrap-login100-form-btn">
+        <%= form.submit 'Guardar', class: 'btn btn-primary btn-block login100-form-btn'  %>
+      </div>
   </div>
 
   </form> 

@@ -1,19 +1,20 @@
-<div class="container ">
-        <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                <div class="card card-signin my-3">
-                <div class="card-body">
+<div class="container-login100" >
+                <div class="wrap-login100 ">
+                    <form  class="login100-form"> 
 
-                    <h1 style="text-align:center;">Editar Atraccion</h1>
+                        <h2 style="text-align:center;">Editar Atraccion</h2>
 
-                    <%= render 'form', atraccion: @atraccion %>
+                        <%= render 'form', atraccion: @atraccion %>
 
-                    
-                    <%= link_to 'Regresar', atraccions_path , class: 'btn btn-primary btn-block' %>
+                        <div class="container-login100-form-btn" >
+                            <div class="wrap-login100-form-btn">
+                                <%= link_to 'Regresar', atraccions_path , class: 'btn btn-primary btn-block login100-form-btn' %>
+                        </div>
+                            </div>
+                    </form > 
 
-
-        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div> 
+</div> 
