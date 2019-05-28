@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   get 'ticket/cambiar_estado'
   #ruta a mapa
   get 'usuario/map'
+  #ruta a editar usuario para administrador
+  get 'usuario/editusers'
 end
