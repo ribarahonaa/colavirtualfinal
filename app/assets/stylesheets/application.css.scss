@@ -197,4 +197,59 @@ h1 {
     {
       width: 100%;        
   }
+  .wrap-tickets {
+    width: 100%; 
   }
+}
+
+  /*------------------------------------------------------------------
+[ Colas usuario ]*/
+.container-colas {
+  width: 100%;  
+  min-height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  
+}
+
+
+.wrap-colas {
+  width: 440px;
+  background: rgba(255, 255, 255, 0.671);
+  border-radius: 15px;
+  padding: 80px 55px 33px 55px;
+ 
+}
+
+.label-colas{
+  padding-top: 10px;
+font-size: 20px;
+text-align: center;
+}
+
+.colas-form{
+  width: 100%;
+ 
+}
+/*------------------------------------------------------------------
+[ tickets supervisor ]*/
+.tickets-btn{
+  font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+    height: 40px;
+
+}
+
+.wrap-tickets {
+  width: 290px;
+  background: rgba(255, 255, 255, 0.671);
+  border-radius: 15px;
+  padding: 80px 55px 33px 55px;
+ 
+}
