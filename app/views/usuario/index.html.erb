@@ -48,7 +48,9 @@
                         
                         <div class="container-login100-form-btn" >
                             <div class="wrap-login100-form-btn">
-                                <%= link_to "Salir de la Cola <i class='far fa-times-circle'></i>".html_safe, {controller: "ticket", action: "cambiar_estado", estado: 5, ticket: op.tickets_id },class: 'btn btn-primary login100-form-btn'%>
+                                <% if @estadoticket.estados_id == 1 %>
+                                    <%= link_to "Salir de la Cola <i class='far fa-times-circle'></i>".html_safe, {controller: "ticket", action: "cambiar_estado", estado: 5, ticket: op.tickets_id },class: 'btn btn-primary login100-form-btn'%>
+                                <% end %>
                             </div>
                         </div>
 
@@ -85,6 +87,16 @@
                                 <% @state = Estado.where("descripcion_est != 'Abortado' and descripcion_est !=  'Encolado' ") %>
                                     
                                     <div class="field form-group label-colas">
+                                        <% if @tktest.estados_id != 5%>
+                                            <% if @tktest.estados_id == 1 %>
+                                                <%= link_to "Llamar a servicio <i class='far fa-circle'></i>".html_safe, {controller: "ticket", action: "cambiar_estado", estado: 2, ticket: sp.tickets_id },class: 'btn btn-primary login100-form-btn'%>
+                                            <% elsif @tktest.estados_id == 2 %>
+                                                <%= link_to "Servido <i class='fas fa-circle'></i>".html_safe, {controller: "ticket", action: "cambiar_estado", estado: 3, ticket: sp.tickets_id },class: 'btn btn-primary login100-form-btn'%>
+                                            <% end %>
+                                            <%= link_to "Omitir <i class='far fa-times-circle'></i>".html_safe, {controller: "ticket", action: "cambiar_estado", estado: 4, ticket: sp.tickets_id },class: 'btn btn-primary login100-form-btn'%>
+                                        <%end %>
+<%
+=begin%>
                                     <select id="estados">
                                         <% @state.each do |st| %>
                                             <option value="<%= st.id %>"><%= st.descripcion_est%></option>
@@ -96,6 +108,8 @@
                                             <%= text_field_tag :ticket,'' , value: sp.tickets_id ,type:"hidden"%>
                                             <%= submit_tag "Cambiar", class: "btn btn-primary" %>
                                         </form>
+<%
+=end%>
                                     </div>
                                     <% @user = User.find(sp.users_id) %>
                                     <div class="container-login100-form-btn" >
