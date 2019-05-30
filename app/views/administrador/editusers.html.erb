@@ -1,0 +1,20 @@
+<div>
+  <div>
+    <table>
+      <tr>
+        <td>Nombre</td>
+        <td>Correo</td>
+        <td>Telefono</td>
+        <td></td>
+      </tr>
+      <% @user.each do |u| %>
+        <tr>
+          <td><%=u.name %> <%= u.last_name %> </td>
+          <td><%=u.email %> </td>
+          <td><%=u.phone %> </td>
+          <td><%= link_to "Editar", administrador_edit_path(id: u.id)%></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

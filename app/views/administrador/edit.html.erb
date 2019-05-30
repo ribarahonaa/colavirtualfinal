@@ -1,0 +1,31 @@
+<div>
+	<div>
+		<label>Nombre: <%= @user.name %></label><br>
+		<label>Apellido: <%= @user.last_name %></label><br>
+		<label>Correo: <%= @user.email %></label><br>
+		<label>Telefono: <%= @user.phone %></label><br>
+
+			<label>Rol:</label>
+			<select id="grupos">
+			<% @group.each do |g| %>
+				<option value="<%=g.id%>"><%= g.kind %></option>
+			<% end %>
+			</select>
+		<form>
+			<input type="hidden" name="grupo" id="grupo">
+			<input type="hidden" name="usuario" value="<%= @user.id %>">
+			<input type="submit" value="Asignar Rol">
+		</form>
+	</div>
+</div>
+
+<script>
+
+	function getGrupo() {
+		document.getElementById("grupo").value = $("#grupos").val()
+	}
+	if (document.getElementById("grupo")){
+		setInterval(getGrupo,300)
+	}
+
+</script>

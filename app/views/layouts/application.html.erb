@@ -53,12 +53,18 @@
                               <%= link_to 'Nueva Atraccion', new_atraccion_path , class: 'nav-link' %>
                             </li> 
                             <li class=" nav-item">
-                              <%= link_to 'Editar Supervisores', usuario_editusers_path, class: 'nav-link' %>
+                              <%= link_to 'Editar Supervisores', "#", class: 'nav-link' %>
                             </li> 
                           <% end %>
                           <% if gestor?(current_user[:id]) || super?(current_user[:id])%>
                           <li class=" nav-item">
                             <%= link_to 'Informes', '#', class: 'nav-link' %>
+                          </li>
+                          <% end %>
+                          <% if super?(current_user[:id]) %>
+                          <li class=" nav-item">
+                            <%= link_to 'Editar Usuarios', administrador_editusers_path, class: 'nav-link' %>
+                          </li>
                           <% end %>
                         
                         </ul>
