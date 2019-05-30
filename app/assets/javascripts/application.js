@@ -65,46 +65,4 @@ function initMap2() {
         map.panTo(marker.getPosition());   
     });
 }
-function initMap(lat, lng) {
-    lat=-33.460192;
-    lng=-70.662270;
-    myCoords = new google.maps.LatLng(lat, lng);
-    bounds = new google.maps.LatLngBounds();
-    mapOptions = {
-    center: myCoords,
-    zoom: 17
-    };
-    infoWindow = new google.maps.InfoWindow;
-    map = new google.maps.Map(document.getElementById('map'), mapOptions);
-    for( i = 0; i < markers.length; i++ ) {
-        var position = new google.maps.LatLng(markers[i][0], markers[i][1]);
-        bounds.extend(position);
-        marker = new google.maps.Marker({
-            position: position,
-            map: map
-        });
-    }
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-          var pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
-          infoWindow.setPosition(pos);
-          infoWindow.setContent('Estas Aqui!');
-          infoWindow.open(map);
-          map.setCenter(pos);
-        }, function() {
-          handleLocationError(true, infoWindow, map.getCenter());
-        });
-    } else {
-        handleLocationError(false, infoWindow, map.getCenter());
-    }
-    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-      infoWindow.setPosition(pos);
-      infoWindow.setContent(browserHasGeolocation ?
-                            'Error: El Servicio de Geolocalizacion fallo.' :
-                            'Error: Tu navegador no posee soporte para geolocalizacion.');
-      infoWindow.open(map);
-    }
-}
+
