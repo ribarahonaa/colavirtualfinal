@@ -19,4 +19,24 @@ class AdministradorController < ApplicationController
         redirect_to administrador_editusers_path
     end
 
+    # Buscar usuarios que sean supervisores
+    def supervisores
+        @supervisor = User.all
+    end
+
+    # Supervisor a asignar
+    def asignar
+        @supervisor = User.find(params[:id])
+        @atraciones = Atraccion.all
+    end
+
+    # Asignar atraccion
+    def asignaratraccion
+        @supervisor = User.find(params[:usuario])
+        @supervisor.atraccion = params[:atraccion]
+        @supervisor.save
+
+        redirect_to administrador_supervisores_path
+    end
+
 end

@@ -15,4 +15,8 @@ Rails.application.routes.draw do
   get 'administrador/editusers'
   get 'administrador/edit'
   get 'administrador/asignarrol'
+  #ruta para asignar atraccion al supervisor
+  get 'administrador/supervisores'
+  get 'administrador/asignar'
+  get 'administrador/asignaratraccion'
 end

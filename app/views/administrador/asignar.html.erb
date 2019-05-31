@@ -1,0 +1,28 @@
+<div>
+    <div>
+        <label>Nombre: <%= @supervisor.name %></label><br>
+        <label>Apellido: <%= @supervisor.last_name %></label><br>
+        <label>Correo: <%= @supervisor.email %></label><br>
+        <label>Telefono: <%= @supervisor.phone %></label><br>
+    </div>
+    <select id="atracciones">
+        <% @atraciones.each do |a| %>
+            <option value="<%= a.id %>"><%= a.nombre_atc %></option>
+        <% end %>
+    </select>
+    <form action="<%= administrador_asignaratraccion_path %>" method="get">
+        <input type="hidden" name="atraccion" id="atraccion">
+        <input type="hidden" name="usuario" value="<%= @supervisor.id %>">
+        <input type="submit" value="Asignar Atraccion">
+    </form>
+</div>
+<script>
+
+	function getGrupo() {
+		document.getElementById("atraccion").value = $("#atracciones").val()
+	}
+	if (document.getElementById("atraccion")){
+		setInterval(getGrupo,300)
+	}
+
+</script>
