@@ -1,20 +1,24 @@
-<div>
+<% if super?(current_user[:id]) %>
   <div>
-    <table>
-      <tr>
-        <td>Nombre</td>
-        <td>Correo</td>
-        <td>Telefono</td>
-        <td></td>
-      </tr>
-      <% @user.each do |u| %>
+    <div>
+      <table>
         <tr>
-          <td><%=u.name %> <%= u.last_name %> </td>
-          <td><%=u.email %> </td>
-          <td><%=u.phone %> </td>
-          <td><%= link_to "Editar", administrador_edit_path(id: u.id)%></td>
+          <td>Nombre</td>
+          <td>Correo</td>
+          <td>Telefono</td>
+          <td></td>
         </tr>
-      <% end %>
-    </table>
+        <% @user.each do |u| %>
+          <tr>
+            <td><%=u.name %> <%= u.last_name %> </td>
+            <td><%=u.email %> </td>
+            <td><%=u.phone %> </td>
+            <td><%= link_to "Editar", administrador_edit_path(id: u.id)%></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
   </div>
-</div>
+<% else %>
+	<h1>Usted no deberia estar en esta pagina</h1>
+<% end %>

@@ -1,24 +1,29 @@
-<div>
+<% if super?(current_user[:id]) %>
+
 	<div>
-		<label>Nombre: <%= @user.name %></label><br>
-		<label>Apellido: <%= @user.last_name %></label><br>
-		<label>Correo: <%= @user.email %></label><br>
-		<label>Telefono: <%= @user.phone %></label><br>
+		<div>
+			<label>Nombre: <%= @user.name %></label><br>
+			<label>Apellido: <%= @user.last_name %></label><br>
+			<label>Correo: <%= @user.email %></label><br>
+			<label>Telefono: <%= @user.phone %></label><br>
 
-			<label>Rol:</label>
-			<select id="grupos">
-			<% @group.each do |g| %>
-				<option value="<%=g.id%>"><%= g.kind %></option>
-			<% end %>
-			</select>
-		<form>
-			<input type="hidden" name="grupo" id="grupo">
-			<input type="hidden" name="usuario" value="<%= @user.id %>">
-			<input type="submit" value="Asignar Rol">
-		</form>
+				<label>Rol:</label>
+				<select id="grupos">
+				<% @group.each do |g| %>
+					<option value="<%=g.id%>"><%= g.kind %></option>
+				<% end %>
+				</select>
+			<form action="<%= administrador_asignarrol_path %>" method="get">
+				<input type="hidden" name="grupo" id="grupo">
+				<input type="hidden" name="usuario" value="<%= @user.id %>">
+				<input type="submit" value="Asignar Rol">
+			</form>
+		</div>
 	</div>
-</div>
 
+<% else %>
+	<h1>Usted no deberia estar en esta pagina</h1>
+<% end %>
 <script>
 
 	function getGrupo() {
