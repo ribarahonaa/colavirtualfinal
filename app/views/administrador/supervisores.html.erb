@@ -1,31 +1,35 @@
-<div>
+<% if admin?(current_user[:id]) %> 
     <div>
-        <table>
-            <tr>
-                <td>Nombre</td>
-                <td>Apellido</td>
-                <td>Email</td>
-                <td>Telefono</td>
-                <td>Atraccion</td>
-                <td>Acciones</td>
-            </tr>
-            <% @supervisor.each do |s| %>
-                <% if User.find(s.id).in_group?(Group.find(2)) %>
-                    <tr>
-                        <td><%= s.name %></td>
-                        <td><%= s.last_name %></td>
-                        <td><%= s.email %></td>
-                        <td><%= s.phone %></td>
-                        <% if !s.atraccion.nil? %>
-                            <% @atraccion = Atraccion.find(s.atraccion) %>
-                            <td><%= @atraccion.nombre_atc%></td>
-                        <% else %>
-                            <td>No asignada</td>
-                        <% end %>
-                        <td><%= link_to "Editar",administrador_asignar_path(id: s.id) %></td>
-                    </tr>
+        <div>
+            <table>
+                <tr>
+                    <td>Nombre</td>
+                    <td>Apellido</td>
+                    <td>Email</td>
+                    <td>Telefono</td>
+                    <td>Atraccion</td>
+                    <td>Acciones</td>
+                </tr>
+                <% @supervisor.each do |s| %>
+                    <% if User.find(s.id).in_group?(Group.find(2)) %>
+                        <tr>
+                            <td><%= s.name %></td>
+                            <td><%= s.last_name %></td>
+                            <td><%= s.email %></td>
+                            <td><%= s.phone %></td>
+                            <% if !s.atraccion.nil? %>
+                                <% @atraccion = Atraccion.find(s.atraccion) %>
+                                <td><%= @atraccion.nombre_atc%></td>
+                            <% else %>
+                                <td>No asignada</td>
+                            <% end %>
+                            <td><%= link_to "Editar",administrador_asignar_path(id: s.id) %></td>
+                        </tr>
+                    <% end %>
                 <% end %>
-            <% end %>
-        </table>
+            </table>
+        </div>
     </div>
-</div>
+<% else %>
+    <h1>Usted no deberia estar en esta pagina</h1>
+<% end  %>
