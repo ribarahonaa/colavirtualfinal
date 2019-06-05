@@ -65,7 +65,9 @@
     <% if supervisor?(current_user[:id])%>
     
         <h1>Tickets de Atraccion</h1>
-        <% @supervisor = OperacionesAtraccion.all%>
+
+        <% if !current_user[:atraccion].nil? %>
+        <% @supervisor = OperacionesAtraccion.where("atraccions_id =  #{current_user[:atraccion] }")%>
         
             <div class="collection" >  
                     <% @supervisor.each do |sp| %>
@@ -110,21 +112,7 @@
                                                 </div>
                                             </div>  
                                         <%end %>
-<%
-=begin%>
-                                    <select id="estados">
-                                        <% @state.each do |st| %>
-                                            <option value="<%= st.id %>"><%= st.descripcion_est%></option>
-                                        <% end %>
-                                    </select>
-                                        <form  action="<%=ticket_cambiar_estado_path%>" method= 'get'>
 
-                                            <%= text_field_tag :estado,'' ,id: "estado", type:"hidden" %>
-                                            <%= text_field_tag :ticket,'' , value: sp.tickets_id ,type:"hidden"%>
-                                            <%= submit_tag "Cambiar", class: "btn btn-primary" %>
-                                        </form>
-<%
-=end%>
                                     </div>
                                     <% @user = User.find(sp.users_id) %>
                                     <div class="container-login100-form-btn" >
@@ -139,7 +127,9 @@
                         </div>    
                     <% end %>
             </div>
-             
+        <% else %>  
+            <h3> Sin atraccion asignada </h3>
+        <% end %>   
 
     <% end %>
     <% if admin?(current_user[:id])%>

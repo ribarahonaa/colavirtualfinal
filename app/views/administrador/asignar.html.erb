@@ -1,21 +1,32 @@
 <% if admin?(current_user[:id]) %> 
-    <div>
-        <div>
-            <label>Nombre: <%= @supervisor.name %></label><br>
-            <label>Apellido: <%= @supervisor.last_name %></label><br>
-            <label>Correo: <%= @supervisor.email %></label><br>
-            <label>Telefono: <%= @supervisor.phone %></label><br>
+    <div class="container-ed ">
+        <div class="wrap-ed  ">
+        <h2 style="text-align:center;"> Asignar atraccion </h2>
+
+            <div class="ed-form"> 
+                <label >Nombre: <%= @supervisor.name %></label><br>
+                <label>Apellido: <%= @supervisor.last_name %></label><br>
+                <label>Correo: <%= @supervisor.email %></label><br>
+                <label>Telefono: <%= @supervisor.phone %></label><br>
+            
+                
+                <form  action="<%= administrador_asignaratraccion_path %>" method="get">
+                    <select id="atracciones">
+                        <% @atraciones.each do |a| %>
+                            <option value="<%= a.id %>"><%= a.nombre_atc %></option>
+                        <% end %>
+                    </select>
+
+                    <input type="hidden" name="atraccion" id="atraccion">
+                    <input type="hidden" name="usuario" value="<%= @supervisor.id %>">
+                    
+                
+                         <input type="submit" value="Asignar Atraccion" class='btn btn-primary super-btn'>
+                        
+                </form>
+            </div>
+            
         </div>
-        <select id="atracciones">
-            <% @atraciones.each do |a| %>
-                <option value="<%= a.id %>"><%= a.nombre_atc %></option>
-            <% end %>
-        </select>
-        <form action="<%= administrador_asignaratraccion_path %>" method="get">
-            <input type="hidden" name="atraccion" id="atraccion">
-            <input type="hidden" name="usuario" value="<%= @supervisor.id %>">
-            <input type="submit" value="Asignar Atraccion">
-        </form>
     </div>
 <% else %>
     <h1>Usted no deberia estar en esta pagina</h1>

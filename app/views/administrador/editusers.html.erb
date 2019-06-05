@@ -1,22 +1,26 @@
 <% if super?(current_user[:id]) %>
-  <div>
-    <div>
-      <table>
-        <tr>
-          <td>Nombre</td>
-          <td>Correo</td>
-          <td>Telefono</td>
-          <td></td>
-        </tr>
-        <% @user.each do |u| %>
-          <tr>
-            <td><%=u.name %> <%= u.last_name %> </td>
-            <td><%=u.email %> </td>
-            <td><%=u.phone %> </td>
-            <td><%= link_to "Editar", administrador_edit_path(id: u.id)%></td>
-          </tr>
-        <% end %>
-      </table>
+  <div class="container-edsup " >
+        <div class="wrap-super ">
+        <h2 style="text-align:center;"> Lista de usuarios </h2>
+            <div class="barra container"  >
+            <table>
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Telefono</th>
+                    <th></th>
+                  </tr>
+                </thead>
+              <% @user.each do |u| %>
+                <tr>
+                  <td><%=u.name %> <%= u.last_name %> </td>
+                  <td><%=u.email %> </td>
+                  <td><%=u.phone %> </td>
+                  <td><%= link_to "Editar", administrador_edit_path(id: u.id)%></td>
+                </tr>
+              <% end %>
+            </table>
     </div>
   </div>
 <% else %>
