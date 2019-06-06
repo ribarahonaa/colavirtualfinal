@@ -23,6 +23,12 @@
                                 <strong>Capacidad de la atraccion :</strong>
                                 <%= @atraccion.capacidad_atc %>
                               </p>
+                              <p>
+                                <strong>Qr: </strong>
+                                <% @imagen = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://colasvirtuales.herokuapp.com/ticket/encolar?id="+@atraccion.id.to_s+"&format=jpg&qzone=3" %>
+                                <img src="<%=@imagen%>" alt="qr">
+                                <%= link_to "Descargar <i class='fas fa-cloud-download-alt'></i>".html_safe, @imagen %>
+                              </p>
                             <div class="container-login100-form-btn" >
                                 <div class="wrap-login100-form-btn">
                                     <%= link_to 'Editar', edit_atraccion_path(@atraccion), class: 'btn btn-primary btn-block login100-form-btn' %> 
