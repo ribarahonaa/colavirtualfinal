@@ -286,7 +286,7 @@ text-align: center;
 }
 
 .wrap-edsup {
-  width: 650px;
+  width: 680px;
   background: rgba(255, 255, 255, 0.671);
   border-radius: 15px;
   padding: 40px 50px 40px 50px;
@@ -332,6 +332,7 @@ tr:hover td{
     overflow-x: auto;
  
   }
+  
 
 }
 
@@ -375,7 +376,7 @@ tr:hover td{
 [ uper usuario  ed user]*/
 
 .wrap-super {
-  width: 500px;
+  width: 560px;
   background: rgba(255, 255, 255, 0.671);
   border-radius: 15px;
   padding: 40px 50px 40px 50px;
@@ -388,4 +389,18 @@ tr:hover td{
   max-width: 230px;
   height: 40px;
   border-radius: 20px;
+}
+
+@media (max-width:580px){
+
+  .wrap-super{
+    width: 100%;
+    padding: 40px 20px 40px 20px;
+    
+  }
+  .barra2{
+    
+    overflow-x: auto;
+ 
+  }
 }

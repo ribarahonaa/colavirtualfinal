@@ -1,27 +1,28 @@
 <% if super?(current_user[:id]) %>
   <div class="container-edsup " >
         <div class="wrap-super ">
-        <h2 style="text-align:center;"> Lista de usuarios </h2>
-            <div class="barra container"  >
-            <table>
-                <thead>
+          <h2 style="text-align:center;"> Lista de usuarios </h2>
+            <div class="barra2 container">
+              <table>
+                  <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Correo</th>
+                      <th>Telefono</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                <% @user.each do |u| %>
                   <tr>
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                    <th>Telefono</th>
-                    <th></th>
+                    <td><%=u.name %> <%= u.last_name %> </td>
+                    <td><%=u.email %> </td>
+                    <td><%=u.phone %> </td>
+                    <td><%= link_to "Editar", administrador_edit_path(id: u.id)%></td>
                   </tr>
-                </thead>
-              <% @user.each do |u| %>
-                <tr>
-                  <td><%=u.name %> <%= u.last_name %> </td>
-                  <td><%=u.email %> </td>
-                  <td><%=u.phone %> </td>
-                  <td><%= link_to "Editar", administrador_edit_path(id: u.id)%></td>
-                </tr>
-              <% end %>
-            </table>
-    </div>
+                <% end %>
+              </table>
+            </div>
+        </div>
   </div>
 <% else %>
 	<h1>Usted no deberia estar en esta pagina</h1>
