@@ -27,6 +27,16 @@
             </div>
             
         </div>
+        <select id="atracciones">
+            <% @atraciones.each do |a| %>
+                <option value="<%= a.id %>"><%= a.nombre_atc %></option>
+            <% end %>
+        </select>
+        <form action="<%= administrador_asignaratraccion_path %>" method="get">
+            <input type="text" name="atraccion" id="atraccion">
+            <input type="hidden" name="usuario" value="<%= @supervisor.id %>">
+            <input type="submit" value="Asignar Atraccion">
+        </form>
     </div>
 <% else %>
     <h1>Usted no deberia estar en esta pagina</h1>

@@ -1,4 +1,4 @@
-<% if admin?(current_user[:id]) %> 
+<% if admin?(current_user[:id]) || super?(current_user[:id])%> 
 
    <div class="container-edsup " >
         <div class="wrap-edsup  ">
