@@ -6,78 +6,19 @@
     });
     </script>
 <% end %> 
-<% @atraccions = Atraccion.all %>
-<% @atraccions.each do |atraccion| %>
-  <input type ="hidden" id="lats" name="atraccionLat" class="latAtraccion" value="<%= atraccion.latitude %>">
-  <input type = "hidden" id="lngs" name="atraccionLng" class="lngAtraccion" value="<%= atraccion.longitude %>"><br>
-<% end %>
+<div style='width: 800px;'>  
+  <div id="map" style='width: 800px; height: 400px;'></div>  
+</div>  
 
-<input type="hidden" id="lat">
-<input type="hidden" id="lng">
-
-<div class="">
-    <div class="map_wrapper" id="map_wrapper">
-        <div class="csmap" id="map"></div>
-    </div>
-</div>
-
+<script type="text/javascript">  
+handler = Gmaps.build('Google');  
+handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){  
+    markers = handler.addMarkers(<%=raw @atraccions_default.to_json %>);  
+    handler.bounds.extendWith(markers);  
+    handler.fitMapToBounds();  
+});  
+</script>
 <script>
-var inputLatAtraccion = document.getElementById("lat")
-var inputLngAtraccion = document.getElementById("lng")
-
-var lats = document.getElementsByClassName("latAtraccion")
-var lngs = document.getElementsByClassName("lngAtraccion")
-
-function imprimeCoordsLat() {
-                  var resultLats = ''
-                  for (var i = 0; i < lats.length; i++) {
-                    if(i === 0){
-                      resultLats = lats[i].value
-                    } else {
-                      resultLats = resultLats +',' + lats[i].value 
-                    }
-
-                    }
-                    inputLatAtraccion.value = resultLats
-                    return resultLats
-                }
-function imprimeCoordsLng() {
-                var resultLngs = ''
-                for (var i = 0; i < lngs.length; i++) {
-                  if(i === 0){
-                    resultLngs = lngs[i].value
-                  } else {
-                    resultLngs = resultLngs +',' + lngs[i].value 
-                  }
-                  
-                  }
-                  inputLngAtraccion.value = resultLngs
-                  return resultLngs
-               }
-
-var lngAtrac = imprimeCoordsLng()
-var latAtrac = imprimeCoordsLat()
-var map, infoWindow, marker, i, lat, lng, myCoords, mapOptions, bounds;
-
-function initMap(lat, lng) {
-    lat=-33.460192;
-    lng=-70.662270;
-    myCoords = new google.maps.LatLng(lat, lng);
-    bounds = new google.maps.LatLngBounds();
-    mapOptions = {
-    center: myCoords,
-    zoom: 17
-    };
-    infoWindow = new google.maps.InfoWindow;
-    map = new google.maps.Map(document.getElementById('map'), mapOptions);
-    for (var i = 0; i < latAtrac.length; i++) {
-      atraCoords = new google.maps.LatLng(latAtrac, lngAtrac);
-      marker = new google.maps.Marker({
-          position: atraCoords,
-          animation: google.maps.Animation.DROP,
-          map: map,
-      });
-    }
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
