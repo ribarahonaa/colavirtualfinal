@@ -17,8 +17,8 @@
                     <td><%=u.name %> <%= u.last_name %> </td>
                     <td><%=u.email %> </td>
                     <td><%=u.phone %> </td>
-                    <td><%= link_to "Editar", administrador_edit_path(id: u.id)%>
-                     <%= link_to 'Eliminar', administrador_eliminar_path(id: u.id) %> </td>
+                    <td><%= link_to "<i class='fas fa-edit'></i>".html_safe, administrador_edit_path(id: u.id)%>
+                     <%# link_to 'Eliminar', administrador_eliminar_path(id: u.id) %> </td>
                   </tr>
                 <% end %>
               </table>

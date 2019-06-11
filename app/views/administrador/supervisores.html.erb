@@ -28,7 +28,7 @@
                             <% else %>
                                 <td>No asignada</td>
                             <% end %>
-                            <td><%= link_to "Editar",administrador_asignar_path(id: s.id) %></td>
+                            <td><%= link_to "<i class='fas fa-edit'></i>".html_safe ,administrador_asignar_path(id: s.id) %></td>
                         </tr>
                     <% end %>
                 <% end %>
