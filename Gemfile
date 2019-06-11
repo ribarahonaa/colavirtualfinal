@@ -62,3 +62,6 @@ gem 'devise'
 
 # grupos de usuarios
 gem 'groupify'
+
+#gogle map
+gem 'gmaps4rails'

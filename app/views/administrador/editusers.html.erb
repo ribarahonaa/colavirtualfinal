@@ -1,4 +1,4 @@
-<% if super?(current_user[:id]) %>
+<% if super?(current_user[:id]) || super?(current_user[:id]) %>
   <div class="container-edsup " >
         <div class="wrap-super ">
           <h2 style="text-align:center;"> Lista de usuarios </h2>
@@ -17,7 +17,8 @@
                     <td><%=u.name %> <%= u.last_name %> </td>
                     <td><%=u.email %> </td>
                     <td><%=u.phone %> </td>
-                    <td><%= link_to "Editar", administrador_edit_path(id: u.id)%></td>
+                    <td><%= link_to "Editar", administrador_edit_path(id: u.id)%>
+                     <%= link_to 'Eliminar', administrador_eliminar_path(id: u.id) %> </td>
                   </tr>
                 <% end %>
               </table>
