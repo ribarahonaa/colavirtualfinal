@@ -72,4 +72,17 @@ abortado.id = 5
 abortado.descripcion_est = "Abortado"
 abortado.save
 
+user = User.new
+user.id = 1
+user.email = "contacto.fantasyrow@gmail.com"
+user.password = "fantasyrow"
+user.name = "FantasyRow"
+user.last_name = "Superuser"
+user.save
+
+u = User.find(1)
+g = Group.find(5)
+
+g.add u
+
 
