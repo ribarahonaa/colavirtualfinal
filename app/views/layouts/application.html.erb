@@ -39,7 +39,7 @@
                             <li class=" nav-item">
                               <%= link_to "Inicio", root_path, class: 'nav-link' %>
                             </li>
-                          <% if cliente?(current_user[:id]) %>
+                          <% if cliente?(current_user[:id]) || super?(current_user[:id])%>
                             <li class=" nav-item">
                               <%= link_to 'Mapa', usuario_map_path, class: 'nav-link' %>
                             </li>
