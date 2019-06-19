@@ -68,3 +68,6 @@ gem 'gmaps4rails'
 
 # triggers
 gem "hairtrigger"
+
+# carrierwave image
+gem 'carrierwave', '~> 1.0'

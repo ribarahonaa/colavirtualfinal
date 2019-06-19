@@ -4,7 +4,7 @@
       document.addEventListener("DOMContentLoaded", initMap2);
   </script>
 <% end %>
-<%= form_with(model: atraccion, local: true) do |form| %>
+<%= form_with(model: atraccion, local: true, :html => { :multipart => true }) do |form| %>
   <% if atraccion.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(atraccion.errors.count, "error") %> prohibited this atraccion from being saved:</h2>
@@ -17,47 +17,48 @@
     </div>
   <% end %>
   
- <form  class="login100-form"> 
-  <div class="field form-group">
-    <%= form.label :nombre_de_la_atraccion ,class:"input"%>
-    <%= form.text_field :nombre_atc , class:"form-control" %>
-  </div>
+  <div  class="login100-form" > 
+    <div class="field form-group">
+      <%= form.label :nombre_de_la_atraccion ,class:"input"%>
+      <%= form.text_field :nombre_atc , class:"form-control" %>
+    </div>
 
-  <div class="field form-group">
-    <%= form.label :descripcion_de_la_atraccion,class:"input" %>
-    <%= form.text_area :descripcion_atc , class:"form-control" %>
-  </div>
+    <div class="field form-group">
+      <%= form.label :descripcion_de_la_atraccion,class:"input" %>
+      <%= form.text_area :descripcion_atc , class:"form-control" %>
+    </div>
 
-  <div class="field form-group">
-    <%= form.label :imagen_de_la_atraccion,class:"input" %>
-    <%= form.text_field :imagen_atc , class:"form-control" %>
-  </div>
+    <div class="field form-group">
+      <%= form.label :subr_imagen_de_la_atraccion_por_url_o_adjuntando_archivo,class:"input" %>
+      <%= form.text_field :imagen_atc , class:"form-control" %><br>
+      <%= form.file_field :imagen_atc , class:"form-control" %>
+    </div>
 
-  <div class="field form-group">
-    <%= form.label  :capacidad_de_la_atraccion,class:"input" %>
-    <%= form.number_field :capacidad_atc , class:"form-control"%>
-  </div>
-  
-  <div class="field form-group">
-    <%= form.label :latitude,class:"input" %>
-    <%= form.text_field :latitude, readonly: true, class:"form-control" %>
-  </div>
+    <div class="field form-group">
+      <%= form.label  :capacidad_de_la_atraccion,class:"input" %>
+      <%= form.number_field :capacidad_atc , class:"form-control"%>
+    </div>
+    
+    <div class="field form-group">
+      <%= form.label :latitude,class:"input" %>
+      <%= form.text_field :latitude, readonly: true, class:"form-control" %>
+    </div>
 
-  <div class="field form-group">
-    <%= form.label :longitude ,class:"input" %>
-    <%= form.text_field :longitude, readonly: true, class:"form-control " %>
-  </div>
-  
-  <div class="map_wrapper2" id="map_wrapper">
-    <div id="map2"></div>
-  </div>
+    <div class="field form-group">
+      <%= form.label :longitude ,class:"input" %>
+      <%= form.text_field :longitude, readonly: true, class:"form-control " %>
+    </div>
+    
+    <div class="map_wrapper2" id="map_wrapper">
+      <div id="map2"></div>
+    </div>
 
-  <div class="container-login100-form-btn" >
-      <div class="wrap-login100-form-btn">
-        <%= form.submit 'Guardar', class: 'btn btn-primary btn-block login100-form-btn'  %>
-      </div>
-  </div>
+    <div class="container-login100-form-btn" >
+        <div class="wrap-login100-form-btn">
+          <%= form.submit 'Guardar', class: 'btn btn-primary btn-block login100-form-btn'  %>
+        </div>
+    </div>
 
-  </form> 
+  </div> 
 <% end %>
  

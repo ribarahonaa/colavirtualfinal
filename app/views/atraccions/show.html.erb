@@ -3,8 +3,8 @@
                 <div class="wrap-login2 ">
                 <div class="card" style="  background: rgba(255, 255, 255, 0.671);">
 
-                      <img class="card-img-top imagen "  src="<%= @atraccion.imagen_atc %>" alt="<%= @atraccion.nombre_atc %>"  height="200" width="250" />
-                    
+                      <img class="card-img-top imagen " src="<%= @atraccion.imagen_atc %>" alt="<%= @atraccion.nombre_atc %>" height="200" width="250" />
+                      <!--<img class="card-img-top imagen " src="<%# image_tag(@atraccion.imagen_atc.url, alt: @atraccion.nombre_atc) if @atraccion.image_atc? %>" height="200" width="250" /> -->
                       <div class="card-body login100-form">
                               
                               <p >
@@ -16,9 +16,7 @@
                                 <strong>Descripcion atc:</strong>
                                 <%= @atraccion.descripcion_atc %>
                               </p>
-
-
-
+                              
                               <p>
                                 <strong>Capacidad de la atraccion :</strong>
                                 <%= @atraccion.capacidad_atc %>
