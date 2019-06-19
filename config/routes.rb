@@ -24,4 +24,5 @@ Rails.application.routes.draw do
   get 'administrador/eliminar'
   #ruta supervisor
   get 'supervisor/index'
+  get 'supervisor/cambiar_estado'
 end
