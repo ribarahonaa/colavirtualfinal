@@ -47,7 +47,7 @@
                           <% end %>
                           <% if supervisor?(current_user[:id])%>
                             <li class=" nav-item">
-                              <%= link_to 'Atraccion Asignada', '#', class: 'nav-link' %>
+                              <%= link_to 'Atraccion Asignada', supervisor_index_path, class: 'nav-link' %>
                             </li>
                           <% end %> 
                           <% if admin?(current_user[:id]) || super?(current_user[:id])%>

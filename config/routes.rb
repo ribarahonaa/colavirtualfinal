@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   get 'administrador/asignar'
   get 'administrador/asignaratraccion'
   get 'administrador/eliminar'
+  #ruta supervisor
+  get 'supervisor/index'
 end
