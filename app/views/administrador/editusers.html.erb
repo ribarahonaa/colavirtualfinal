@@ -3,7 +3,7 @@
         <div class="wrap-super ">
           <h2 style="text-align:center;"> Lista de usuarios </h2>
             <div class="barra2 container">
-              <table>
+              <table id="usuarios" class="display">
                   <thead>
                     <tr>
                       <th>Nombre</th>
@@ -28,3 +28,9 @@
 <% else %>
 	<h1>Usted no deberia estar en esta pagina</h1>
 <% end %>
+
+<script>
+    $(document).ready( function () {
+        $('#usuarios').DataTable();
+    } );
+</script>

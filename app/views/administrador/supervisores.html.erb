@@ -4,7 +4,7 @@
         <div class="wrap-edsup  ">
         <h2 style="text-align:center;"> Lista de supervisores </h2>
             <div class="barra container">
-            <table>
+            <table id="supervisores" class="display">
                 <thead>
                     <tr>
                         <th>Nombre</th>
@@ -39,3 +39,9 @@
 <% else %>
     <h1>Usted no deberia estar en esta pagina</h1>
 <% end  %>
+
+<script>
+    $(document).ready( function () {
+        $('#supervisores').DataTable();
+    } );
+</script>
