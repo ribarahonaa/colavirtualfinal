@@ -24,7 +24,7 @@
     <% if cliente?(current_user[:id])%>
     <!--Colas del cliente-->
         <h1 style="text-align: center;">Mis Colas</h1>
-        <% @operaciones = OperacionesAtraccion.where("users_id = #{current_user[:id]}")%>
+        <% @operaciones = OperacionesAtraccion.where("users_id = #{current_user[:id]}").order('created_at DESC')%>
 
     <div class="collection-colas" >  
         <% @operaciones.each do |op| %>
