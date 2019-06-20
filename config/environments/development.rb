@@ -42,7 +42,7 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
-  #config.action_mailer.default_options = {from: 'contacto@fantasirow.com'}
+  #config.action_mailer.default_options = {from: 'contacto.fantasirow@gmail.com'}
   config.action_mailer.perform_deliveries = true
 
   config.action_mailer.raise_delivery_errors = true
@@ -52,8 +52,8 @@ Rails.application.configure do
   address:              'smtp.gmail.com',
   port:                 587,
   domain:               'gmail.com',
-  user_name:            '<username>',
-  password:             '<password>',
+  user_name:            'contacto.fantasirow@gmail.com',
+  password:             'fantasirow0207',
   authentication:       'plain',
   enable_starttls_auto: true  }
 

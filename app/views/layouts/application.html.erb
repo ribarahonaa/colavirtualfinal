@@ -58,7 +58,7 @@
                               <%= link_to 'Nueva Atraccion', new_atraccion_path , class: 'nav-link' %>
                             </li> 
                             <li class=" nav-item">
-                              <%= link_to 'Editar Supervisores', administrador_supervisores_path, class: 'nav-link' %>
+                              <%= link_to 'Supervisores', administrador_supervisores_path, class: 'nav-link' %>
                             </li> 
                           <% end %>
                           <% if gestor?(current_user[:id]) || super?(current_user[:id])%>
@@ -68,7 +68,7 @@
                           <% end %>
                           <% if super?(current_user[:id]) %>
                           <li class=" nav-item">
-                            <%= link_to 'Editar Usuarios', administrador_editusers_path, class: 'nav-link' %>
+                            <%= link_to 'Asignar Roles', administrador_editusers_path, class: 'nav-link' %>
                           </li>
                           <% end %>
                         
