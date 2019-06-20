@@ -9,6 +9,7 @@ class SupervisorController < ApplicationController
         @estado = TicketEstado.new
         @estado.estados_id = params[:estado]
         @estado.tickets_id = params[:ticket]
+        #UserMailer.call_user_mail(@user).deliver
         @estado.save
         redirect_to supervisor_index_path
         
