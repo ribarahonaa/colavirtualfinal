@@ -16,7 +16,8 @@
  body{
   margin: 0px; 
   padding: 0px;
-  background-image: url('132.jpg' ) ;
+  // background-image: url('descarga.jpg' ) ;
+  background-color: #ddd;
   background-repeat: no-repeat;
   background-size:cover ;
   background-position: center;
@@ -115,10 +116,13 @@ h1 {
 
   .wrap-login100 {
     width: 495px;
-    background: rgba(255, 255, 255, 0.671);
+    background: white;
     border-radius: 15px;
     overflow: hidden;
     padding: 77px 55px 33px 55px;
+    -webkit-box-shadow: 9px 16px 39px -23px rgba(0,0,0,0.75);
+    -moz-box-shadow: 9px 16px 39px -23px rgba(0,0,0,0.75);
+    box-shadow: 9px 16px 39px -23px rgba(0,0,0,0.75);
    
   }
   .wrap-login2 {
