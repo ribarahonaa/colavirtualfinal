@@ -9,6 +9,7 @@
                       <th>Nombre</th>
                       <th>Correo</th>
                       <th>Telefono</th>
+                      <th>Rol(es)</th>
                       <th>Acciones</th>
                     </tr>
                   </thead>
@@ -17,7 +18,24 @@
                     <td><%=u.name %> <%= u.last_name %> </td>
                     <td><%=u.email %> </td>
                     <td><%=u.phone %> </td>
-                    <td><%= link_to "<i class='fas fa-edit'></i>".html_safe, administrador_edit_path(id: u.id)%>
+                    <td>
+                      <%if cliente?(u.id)%>
+                        Cliente
+                      <%end%>
+                      <%if supervisor?(u.id)%>
+                        Supervisor
+                      <%end%>
+                      <%if admin?(u.id)%>
+                        Administrador
+                      <%end%>
+                      <%if gestor?(u.id)%>
+                        Gestor 
+                      <%end%>
+                      <%if super?(u.id)%>
+                        Super Usuario
+                      <%end%>
+                    </td>
+                    <td><%= link_to "<i class='fas fa-users-cog'></i>".html_safe, administrador_edit_path(id: u.id)%>
                      <%# link_to 'Eliminar', administrador_eliminar_path(id: u.id) %> </td>
                   </tr>
                 <% end %>

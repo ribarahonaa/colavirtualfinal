@@ -9,7 +9,7 @@
                 <label>Correo: <%= @supervisor.email %></label><br>
                 <label>Telefono: <%= @supervisor.phone %></label><br>
                  <label>Atraccion:</label>
-                <select  class=" select " id="atracciones">
+                <select class="form-control" id="exampleFormControlSelect1">
                     <% @atraciones.each do |a| %>
                         <option  value="<%= a.id %>"><%= a.nombre_atc %></option>
                     <% end %>
@@ -30,7 +30,7 @@
 <script>
 
 	function getGrupo() {
-		document.getElementById("atraccion").value = $("#atracciones").val()
+		document.getElementById("atraccion").value = $("#exampleFormControlSelect1").val()
 	}
 	if (document.getElementById("atraccion")){
 		setInterval(getGrupo,300)

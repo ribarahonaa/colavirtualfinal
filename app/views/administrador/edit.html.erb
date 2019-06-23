@@ -11,7 +11,7 @@
 				<label>Telefono: <%= @user.phone %></label><br>
 
 					<label>Rol:</label>
-					<select id="grupos">
+					<select class="form-control" id="exampleFormControlSelect1">
 					<% @group.each do |g| %>
 						<option value="<%=g.id%>"><%= g.kind %></option>
 					<% end %>
@@ -25,6 +25,47 @@
 				</form>
 			</div>
 		</div>
+
+		<div class="wrap-ed">
+			<h2>Roles Asignados</h2>
+			<div class="ed-form">
+				<table>
+					<thead>
+						<tr>
+							<th>Rol</th>
+							<th>Eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<%if supervisor?(@user.id)%>
+							<tr>
+								<td>Supervisor</td>
+								<td><%= link_to "<i class='fas fa-times'></i>".html_safe, {controller: "administrador", action: "delete_rol", user: @user.id , rol: 2} %></td>
+							</tr>
+						<%end%>
+						<%if admin?(@user.id)%>
+							<tr>
+								<td>Administrador</td>
+								<td><%= link_to "<i class='fas fa-times'></i>".html_safe, {controller: "administrador", action: "delete_rol", user: @user.id , rol: 3} %></td>
+							</tr>
+						<%end%>
+						<%if gestor?(@user.id)%>
+							<tr>
+								<td>Gestor</td>
+								<td><%= link_to "<i class='fas fa-times'></i>".html_safe, {controller: "administrador", action: "delete_rol", user: @user.id , rol: 4} %></td>
+							</tr>
+						<%end%>
+						<%if super?(@user.id)%>
+							<tr>
+								<td>Super Usuario</td>
+								<td><%= link_to "<i class='fas fa-times'></i>".html_safe, {controller: "administrador", action: "delete_rol", user: @user.id , rol: 5} %></td>
+							</tr>
+						<%end%>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
 	</div>
 
 <% else %>
@@ -33,7 +74,7 @@
 <script>
 
 	function getGrupo() {
-		document.getElementById("grupo").value = $("#grupos").val()
+		document.getElementById("grupo").value = $("#exampleFormControlSelect1").val()
 	}
 	if (document.getElementById("grupo")){
 		setInterval(getGrupo,300)

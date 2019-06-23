@@ -2,7 +2,7 @@ class AdministradorController < ApplicationController
 
     # Muestra a todos los usuarios
     def editusers
-        @user = User.all
+        @user = User.where("id != 1")
     end
 
     # Muestra al usuario seleccionado
@@ -37,6 +37,15 @@ class AdministradorController < ApplicationController
         @supervisor.save
 
         redirect_to administrador_supervisores_path
+    end
+
+    def delete_rol
+        @user = User.find(params[:user]) # Busca al usuario
+        @group = Group.find(params[:rol]) # Busca el grupo
+
+        @user.groups.delete(@group) # Elimina al usuario del grupo
+
+        redirect_to administrador_edit_path(params[:user])
     end
 
     # def eliminar
