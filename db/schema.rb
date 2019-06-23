@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_31_010613) do
+ActiveRecord::Schema.define(version: 2019_06_23_231710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,13 @@ ActiveRecord::Schema.define(version: 2019_05_31_010613) do
     t.index ["users_id"], name: "index_operaciones_atraccions_on_users_id"
   end
 
+  create_table "stats", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "atraccion_id"
+    t.integer "ticket_id"
+    t.datetime "created_at"
+  end
+
   create_table "ticket_estados", force: :cascade do |t|
     t.bigint "estados_id"
     t.bigint "tickets_id"
@@ -96,4 +103,10 @@ ActiveRecord::Schema.define(version: 2019_05_31_010613) do
   add_foreign_key "operaciones_atraccions", "users", column: "users_id"
   add_foreign_key "ticket_estados", "estados", column: "estados_id"
   add_foreign_key "ticket_estados", "tickets", column: "tickets_id"
+  create_trigger("operaciones_atraccions_after_insert_row_tr", :generated => true, :compatibility => 1).
+      on("operaciones_atraccions").
+      after(:insert) do
+    "INSERT INTO STATS(user_id, atraccion_id, ticket_id, created_at) VALUES(NEW.users_id, NEW.atraccions_id, NEW.tickets_id, NEW.created_at);"
+  end
+
 end
