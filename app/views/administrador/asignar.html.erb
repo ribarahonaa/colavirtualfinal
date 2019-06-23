@@ -8,11 +8,13 @@
                 <label>Apellido: <%= @supervisor.last_name %></label><br>
                 <label>Correo: <%= @supervisor.email %></label><br>
                 <label>Telefono: <%= @supervisor.phone %></label><br>
-                <select id="atracciones">
+                 <label>Atraccion:</label>
+                <select  class=" select " id="atracciones">
                     <% @atraciones.each do |a| %>
-                        <option value="<%= a.id %>"><%= a.nombre_atc %></option>
+                        <option  value="<%= a.id %>"><%= a.nombre_atc %></option>
                     <% end %>
                 </select>
+                
                 <form  action="<%= administrador_asignaratraccion_path %>" method="get">
                     <input type="hidden" name="atraccion" id="atraccion">
                     <input type="hidden" name="usuario" value="<%= @supervisor.id %>">

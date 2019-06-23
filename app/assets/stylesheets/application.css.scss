@@ -283,7 +283,7 @@ text-align: center;
 [ editar supervisor ]*/
 .container-edsup {
   width: 100%;  
-  min-height: 50vh;
+  min-height: 60vh;
   display: flex;
  
   justify-content: center;
@@ -294,10 +294,10 @@ text-align: center;
 }
 
 .wrap-edsup {
-  width: 800px;
+  width: 900px;
   background: rgba(255, 255, 255, 0.671);
   border-radius: 15px;
-  padding: 40px 50px 40px 50px;
+  padding: 40px 50px 30px 50px;
   
 }
 
@@ -377,20 +377,28 @@ tr:hover td{
     height: 29px;
 }
 
+
 /*------------------------------------------------------------------
 [ super usuario  edit user]*/
 
 .wrap-super {
-  width: 660px;
+  width: 700px;
   background: rgba(255, 255, 255, 0.671);
   border-radius: 15px;
   padding: 40px 50px 40px 50px;
-  -webkit-box-shadow: 13px 13px 15px -3px rgba(0,0,0,0.75);
-  -moz-box-shadow: 13px 13px 15px -3px rgba(0,0,0,0.75);
-  box-shadow: 13px 13px 15px -3px rgba(0,0,0,0.75);
+  
   
 }
-.super-btn{
+.container-super {
+  width: 100%;  
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  
+}
+.super-btn{  
   font-size: 18px;
   padding: 20 20px;
   width: 100%;
@@ -407,6 +415,41 @@ tr:hover td{
     
   }
   .barra2{
+    
+    overflow-x: auto;
+ 
+  }
+}
+/*------------------------------------------------------------------
+[ list de usuarios encolados]*/
+
+
+.wrap-cola {
+  width: 600px;
+  background: rgba(255, 255, 255, 0.671);
+  border-radius: 15px;
+  padding: 40px 50px 40px 50px;
+  
+  
+}
+.container-cola {
+  width: 100%;  
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  
+}
+
+@media (max-width:580px){
+
+  .wrap-cola{
+    width: 100%;
+    padding: 40px 20px 40px 20px;
+    
+  }
+  .barra3{
     
     overflow-x: auto;
  

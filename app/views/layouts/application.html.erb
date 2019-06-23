@@ -39,7 +39,7 @@
                             <li class=" nav-item">
                               <%= link_to "Inicio", root_path, class: 'nav-link' %>
                             </li>
-                          <% if cliente?(current_user[:id]) || super?(current_user[:id])%>
+                          <% if cliente?(current_user[:id]) || super?(current_user[:id]) ||  admin?(current_user[:id])%>
                             <li class=" nav-item">
                               <%= link_to 'Mapa', usuario_map_path, class: 'nav-link' %>
                             </li>
@@ -60,6 +60,7 @@
                             <li class=" nav-item">
                               <%= link_to 'Supervisores', administrador_supervisores_path, class: 'nav-link' %>
                             </li> 
+                           
                           <% end %>
                           <% if gestor?(current_user[:id]) || super?(current_user[:id])%>
                           <li class=" nav-item">
