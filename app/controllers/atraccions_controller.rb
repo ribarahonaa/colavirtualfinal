@@ -25,6 +25,8 @@ class AtraccionsController < ApplicationController
   # POST /atraccions.json
   def create
     @atraccion = Atraccion.new(atraccion_params)
+    @atraccion.pause = false
+    @atraccion.save
 
     respond_to do |format|
       if @atraccion.save

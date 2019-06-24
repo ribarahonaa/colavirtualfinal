@@ -23,13 +23,13 @@
     <% if cliente?(current_user[:id])%>
     <!--Colas del cliente-->
         <h1 style="text-align: center;">Mis Colas</h1>
-        <% @operaciones = OperacionesAtraccion.where("users_id = #{current_user[:id]}").order('created_at DESC')%>
+        <% @operaciones = OperacionesAtraccion.where("users_id = #{current_user[:id]}").order('created_at DESC')%> <!--Busca Todos los Ticket que posee el usuario-->
 
     <div class="collection-colas" >  
         <% @operaciones.each do |op| %>
-            <% @estadoticket = TicketEstado.where("tickets_id = #{op.tickets_id}").last%>
+            <% @estadoticket = TicketEstado.where("tickets_id = #{op.tickets_id}").last%> <!--Busca el ultimo estado que tiene el ticket-->
             <% @estado = Estado.find(@estadoticket.estados_id) %>
-            <% if @estado.id != 5 %>
+            <% if @estado.id != 5 && @estado.id != 4%>  <!--Revisa que el ticket no este abortado u omitido-->
                 <div class="container-colas" >
                     <div class="wrap-colas ">
                     <% @atraccion = Atraccion.find(op.atraccions_id) %>

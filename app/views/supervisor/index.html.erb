@@ -4,7 +4,13 @@
     <% if !current_user[:atraccion].nil? %>
 			<% @atr = Atraccion.find(current_user[:atraccion]) %>
 			<%@count = 0%>
-			<h1><%=@atr.nombre_atc%> </h1>
+			<h1><%=@atr.nombre_atc%>
+				<%if @atr.pause == false%>
+					<%=link_to "Pausar <i class='fas fa-pause'></i>".html_safe ,{controller: "supervisor", action:"pausar", atc: @atr.id}, class: "btn btn-outline-warning"%>
+				<% else %>
+					<%=link_to "Iniciar <i class='fas fa-play'></i>".html_safe ,{controller: "supervisor", action:"play", atc: @atr.id}, class: "btn btn-outline-warning"%>
+				<% end %>
+			</h1>
 	<div class="container-cola " >
 		<div class="wrap-cola ">
 			<h2 style="text-align:center;"> Lista de usuarios </h2>
@@ -26,7 +32,7 @@
 											<%if @count < @atr.capacidad_atc %>
 												<%if @est.id != 4 && @est.id != 5 && @est.id != 3%>
 													<tr>
-														<td><%= sp.tickets_id %></td>
+														<td><input type="hidden" value="<%= sp.tickets_id %>" class="ticket"/><%= sp.tickets_id %></td>
 														<td><%= @est.descripcion_est %></td>
 														<%if @est.id == 1%>
 															<td><%= link_to "Llamar a servicio", {controller: "supervisor", action: "cambiar_estado", estado: 2, ticket: sp.tickets_id } %></td>
@@ -56,3 +62,17 @@
     <% end %>   
 
 <% end %>
+
+<script>
+
+	var inputs = document.getElementsByClassName("ticket")
+	var valores
+	function set_valor() {
+		for (var i = 0; i > inputs.lentgh; i++ )
+			{
+				valores = inputs[i].value
+			}
+		
+	}
+
+</script>
