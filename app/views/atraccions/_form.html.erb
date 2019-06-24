@@ -19,23 +19,24 @@
   
   <div  class="login100-form" > 
     <div class="field form-group">
-      <%= form.label :nombre_de_la_atraccion ,class:"input"%>
+      <%= form.label :nombre_atc,"Nombre" ,class:"input"%>
       <%= form.text_field :nombre_atc , class:"form-control", placeholder: "Kamikaze"%>
     </div>
 
     <div class="field form-group">
-      <%= form.label :descripcion_de_la_atraccion,class:"input" %>
+      <%= form.label :descripcion_atc,"Descripcion",class:"input" %>
       <%= form.text_area :descripcion_atc , class:"form-control" %>
     </div>
 
     <div class="field form-group">
-      <%= form.label :subr_imagen_de_la_atraccion_por_url_o_adjuntando_archivo,class:"input" %>
+      <%# form.label :subir_imagen_de_la_atraccion_por_url_o_adjuntando_archivo, class:"input" %>
+      <%= form.label :imagen_atc,"Url Imagen", class:"input" %>
       <%= form.text_field :imagen_atc , class:"form-control" %><br>
-      <%= form.file_field :imagen_atc , class:"form-control" %>
+      <%# form.file_field :imagen_atc , class:"form-control" %>
     </div>
 
     <div class="field form-group">
-      <%= form.label  :capacidad_de_la_atraccion,class:"input" %>
+      <%= form.label  :capacidad_atc,"Capacidad",class:"input" %>
       <%= form.number_field :capacidad_atc , class:"form-control", placeholder: "100"%>
     </div>
     
