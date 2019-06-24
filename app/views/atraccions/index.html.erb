@@ -35,7 +35,11 @@
                         <%= link_to 'Eliminar', atraccion, class: 'btn btn-primary btn-block', method: :delete, data: { confirm: 'Esta seguro?' } %>
                       <% end %>
                       <% if cliente?(current_user[:id])%>
-                        <%= link_to 'Encolarme', {controller: "ticket", action: "encolar", id: atraccion.id} , class: 'btn btn-primary btn-block' %>
+                        <% if atraccion.pause != true %>
+                          <%= link_to 'Encolarme', {controller: "ticket", action: "encolar", id: atraccion.id} , class: 'btn btn-primary btn-block' %>
+                        <% else %>
+                          <p>Pausada Momentaneamente</p>
+                        <% end %>
                       <% end %>
                                   
                       

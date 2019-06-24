@@ -14,4 +14,20 @@ class SupervisorController < ApplicationController
         redirect_to supervisor_index_path
         
     end
+
+    def pausar
+        @atraccion = Atraccion.find(params[:atc])
+        @atraccion.pause = true
+        @atraccion.save
+
+        redirect_to supervisor_index_path
+    end
+
+    def play
+        @atraccion = Atraccion.find(params[:atc])
+        @atraccion.pause = false
+        @atraccion.save
+
+        redirect_to supervisor_index_path
+    end
 end

@@ -26,4 +26,6 @@ Rails.application.routes.draw do
   #ruta supervisor
   get 'supervisor/index'
   get 'supervisor/cambiar_estado'
+  get 'supervisor/pausar'
+  get 'supervisor/play'
 end
