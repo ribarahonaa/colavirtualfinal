@@ -1,4 +1,6 @@
 module ApplicationHelper
+
+    # Helper: se asegura que el usuario pertenesca a uno de los grupos creados
     def cliente?(id)
         User.find(id).in_group?(Group.find(1))
     end
@@ -18,4 +20,5 @@ module ApplicationHelper
     def super?(id)
         User.find(id).in_group?(Group.find(5))
     end
+    #End Helper
 end
