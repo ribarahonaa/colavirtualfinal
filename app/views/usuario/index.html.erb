@@ -29,7 +29,7 @@
         <% @operaciones.each do |op| %>
             <% @estadoticket = TicketEstado.where("tickets_id = #{op.tickets_id}").last%>
             <% @estado = Estado.find(@estadoticket.estados_id) %>
-            <% if @estado.id != 5 %>
+            <% if @estado.id != 5 && @estado.id != 4%>
                 <div class="container-colas" >
                     <div class="wrap-colas ">
                     <% @atraccion = Atraccion.find(op.atraccions_id) %>
