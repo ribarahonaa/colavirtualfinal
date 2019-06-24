@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   #ruta a mapa
   get 'usuario/map'
   #ruta informes
-  get 'usuario/informs'
+  get 'usuario/reports'
   #ruta a editar usuario para super usuario
   get 'administrador/editusers'
   get 'administrador/edit'

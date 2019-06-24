@@ -64,7 +64,7 @@
                           <% end %>
                           <% if gestor?(current_user[:id]) || super?(current_user[:id])%>
                           <li class=" nav-item">
-                            <%= link_to 'Informes', '#', class: 'nav-link' %>
+                            <%= link_to 'Informes', usuario_reports_path, class: 'nav-link' %>
                           </li>
                           <% end %>
                           <% if super?(current_user[:id]) %>

@@ -71,3 +71,6 @@ gem "hairtrigger"
 
 # carrierwave image
 gem 'carrierwave', '~> 1.0'
+
+# Generar Word
+gem 'caracal'
