@@ -3,4 +3,6 @@ class Atraccion < ApplicationRecord
     # has_many :tickets, through: :operaciones_atraccions
     # has_many :users, through: :operaciones_atraccions
     #mount_uploader :image_atc, ImageAtcUploader
+
+    has_one_attached :image
 end
