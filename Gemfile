@@ -74,3 +74,6 @@ gem 'carrierwave', '~> 1.0'
 
 # Generar Word
 gem 'caracal'
+
+# Amazon
+gem 'aws-sdk'
