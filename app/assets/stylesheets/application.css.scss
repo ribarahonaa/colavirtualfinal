@@ -453,14 +453,50 @@ tr:hover td{
     padding: 40px 20px 40px 20px;
     
   }
+  .wrap-info{
+  
+    width: 100%;
+  }
   .barra3{
     
     overflow-x: auto;
  
   }
+  .barra-info {
+    overflow-x: auto;
+  }
 }
 
 .nav-tabs{
   background-color: white;
-  color:white;
+    width: 264px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+.container-info{
+  min-height: 10vh;
+  display: flex;
+ justify-content: center;
+ align-items: flex-end;
+ 
+ padding-right: 51%;
+
+}
+.container-info1{
+  
+  
+  display: flex;
+  justify-content: center;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+.wrap-info{
+  
+  width: 900px;
+  background: rgba(255, 255, 255, 0.671);
+  border-radius: 15px;
+  padding: 40px 50px 40px 50px;
 }
