@@ -376,13 +376,17 @@ tr:hover td{
     max-width: 160px;
     height: 29px;
 }
+.select{
+  height: 27px;
+  width: 200px;
+}
 
 
 /*------------------------------------------------------------------
 [ super usuario  edit user]*/
 
 .wrap-super {
-  width: 700px;
+  width: 800px;
   background: rgba(255, 255, 255, 0.671);
   border-radius: 15px;
   padding: 40px 50px 40px 50px;
@@ -454,4 +458,9 @@ tr:hover td{
     overflow-x: auto;
  
   }
+}
+
+.nav-tabs{
+  background-color: white;
+  color:white;
 }
