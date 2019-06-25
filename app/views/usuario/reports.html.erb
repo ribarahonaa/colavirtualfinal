@@ -12,7 +12,7 @@
 </ul>
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="semanal" role="tabpanel" aria-labelledby="semanal-tab">
-    <table>
+    <table id="diario" class="display">
       <thead>
         <tr>
           <th>Atraccion</th>
@@ -80,10 +80,10 @@
     </table>
   </div>
   <div class="tab-pane fade" id="mensual" role="tabpanel" aria-labelledby="mensual-tab">
-    
+    Semanal
   </div>
-  <div claSemanalss="tab-pane fade" id="anual" role="tabpanel" aria-labelledby="anual-tab">
-    
+  <div class="tab-pane fade" id="anual" role="tabpanel" aria-labelledby="anual-tab">
+    Mensual
   </div>
 </div>
 
@@ -92,4 +92,8 @@
     e.preventDefault()
     $(this).tab('show')
   })
+
+  $(document).ready( function () {
+      $('#diario').DataTable();
+  } );
 </script>
