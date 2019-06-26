@@ -28,4 +28,5 @@ Rails.application.routes.draw do
   get 'supervisor/cambiar_estado'
   get 'supervisor/pausar'
   get 'supervisor/play'
+  get 'supervisor/llamar'
 end

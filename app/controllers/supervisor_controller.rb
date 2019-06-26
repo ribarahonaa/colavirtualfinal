@@ -5,11 +5,10 @@ class SupervisorController < ApplicationController
     end
 
     def cambiar_estado
-
+        
         @estado = TicketEstado.new
         @estado.estados_id = params[:estado]
         @estado.tickets_id = params[:ticket]
-        #UserMailer.call_user_mail(@user).deliver
         @estado.save
         redirect_to supervisor_index_path
         
@@ -27,6 +26,14 @@ class SupervisorController < ApplicationController
         @atraccion = Atraccion.find(params[:atc])
         @atraccion.pause = false
         @atraccion.save
+
+        redirect_to supervisor_index_path
+    end
+
+    def llamar
+        @user = User.find(params[:id])
+        @atraccion = Atraccion.find(params[:atc])
+        UserMailer.call_user_mail(@user, @atraccion).deliver
 
         redirect_to supervisor_index_path
     end
