@@ -45,7 +45,7 @@ class AdministradorController < ApplicationController
 
         @user.groups.delete(@group) # Elimina al usuario del grupo
 
-        redirect_to administrador_edit_path(params[:user])
+        redirect_to administrador_edit_path(id: @user.id)
     end
 
     # def eliminar
