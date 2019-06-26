@@ -37,4 +37,17 @@ class SupervisorController < ApplicationController
 
         redirect_to supervisor_index_path
     end
+
+    def masivo
+
+        @atraccion = Atraccion.find(params[:atc])
+        @usuarios = params[:usuarios]
+
+        @usuarios.split(',').each do |u|
+            @user = User.find(u)
+            UserMailer.call_user_mail(@user, @atraccion).deliver
+        end
+
+        redirect_to supervisor_index_path
+    end
 end
