@@ -41,6 +41,7 @@
 														<%end%>
 														<td><%= link_to "Omitir", {controller: "supervisor", action: "cambiar_estado", estado: 4, ticket: sp.tickets_id } %></td>
 														<%@user = User.find(sp.users_id)%>
+														<input type="hidden" name="pass_cantidad" id="intTicket">
 														<td><%= link_to "Llamar", {controller: "supervisor", action: "llamar", id: @user.id, atc: @atr.id} %></td>
 													</tr>
 													<%@count += 1%>
@@ -62,13 +63,18 @@
 <script>
 
 	var inputs = document.getElementsByClassName("ticket")
-	var valores []
+	var valores = ''
 	
 	function set_valor() {
-		for (var i = 0; i > inputs.lentgh; i++ )
-			{
-				valores = inputs[i].value
-			}
+		for (var i = 0; i > inputs.lentgh; i++ ){
+			if(i === 0){
+    		valores = inputs[i].value
+   		} else {
+    		valores = valores +',' + inputs[i].value
+   			}
+		}
+		document.getElementById("intTicket").value = valores
+  	return valores
 	}
 
 </script>
