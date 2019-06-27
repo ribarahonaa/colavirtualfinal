@@ -15,6 +15,8 @@
 		<div class="wrap-cola ">
 			<h2 style="text-align:center;"> Lista de usuarios </h2>
 				<div class="barra3 container">
+				<% @c = 0%>
+				<% @a = 0%>
 					<table>
 								<thead>
 									<tr>
@@ -32,20 +34,24 @@
 											<%if @count < @atr.capacidad_atc %>
 												<%if @est.id != 4 && @est.id != 5 && @est.id != 3%>
 													<tr>
-														<td><input type="text" value="<%= sp.tickets_id %>" class="ticket"/><%= sp.tickets_id %></td>
+														<td><input type="hidden" value="<%= sp.tickets_id %>" class="ticket"/><%= sp.tickets_id %></td>
 														<td><%= @est.descripcion_est %></td>
 														<%if @est.id == 2%>
+															<%@a += 1%>
 															<td><%= link_to "Servido", {controller: "supervisor", action: "cambiar_estado", estado: 3, ticket: sp.tickets_id } %></td>
 														<%else%>
+															<%@a = 0%>
 															<td>En Espera</td>
 														<%end%>
 														<td><%= link_to "Omitir", {controller: "supervisor", action: "cambiar_estado", estado: 4, ticket: sp.tickets_id } %></td>
 														<%@user = User.find(sp.users_id)%>
+														<input type="hidden" value="<%=@user.id%>" class="users"/>
 														<%if @est.id == 1%>
-														<input type="hidden" value="<%=@user.id%>" class="users" >
-														<td><%= link_to "Contactar", {controller: "supervisor", action: "llamar", id: @user.id, atc: @atr.id, estado: 2 , ticket: sp.tickets_id} %></td>
+															<%@c = 0%>
+															<td><%= link_to "Contactar", {controller: "supervisor", action: "llamar", id: @user.id, atc: @atr.id, estado: 2 , ticket: sp.tickets_id} %></td>
 														<%else%>
-															<td>Contactado</td>
+															<%@c += 2%>
+															<td><%= link_to "Contactar", {controller: "supervisor", action: "contactar", id: @user.id, atc: @atr.id} %></td>
 														<%end%>
 													</tr>
 													<%@count += 1%>
@@ -55,14 +61,18 @@
 								</tbody>
 				
 					</table>
-
-					<form>
+			<% if @c == @a%>
+					<form action="<%=supervisor_cambiar_estado_masivo_path%>" method="get">
 						<input type="hidden" name="tickets_id" id="intTicket">
+						<input type="hidden" name="estado" value="2">
+						<input type="hidden" name="atraccion" value="<%=@atr.id%>">
+						<input type="hidden" name="usuarios" id="intUser">
 						<input type="submit" value="Llamar a servicio" class="btn btn-primary">
 					</form>
-						<br>
-					<form>
+			<% else %>
+					<form action="<%=supervisor_servidos_path%>" method="get">
 						<input type="hidden" name="tickets_id" id="intTicket">
+						<input type="hidden" name="estado" value="3">
 						<input type="submit" value="Servido" class="btn btn-primary">
 					</form>
 						<br>
@@ -71,6 +81,7 @@
 						<input type="hidden" name="atc" value="<%=@atr.id%>">
 						<input type="submit" value="Contactar a Todos" class="btn btn-primary">
 					</form>
+			<% end %>
 				</div>
 		</div>
 	</div>		
@@ -82,42 +93,53 @@
 
 <script>
 	
-	var inputs = document.getElementsByClassName("ticket")
-	var inputs2 = document.getElementsByClassName("users")
-	var valores = ''
-	var usuarios = ''
-	var i = 0
-	var e = 0
-
 	function set_ticket() {
-
-		for (i; i >= inputs.length; i++ ){
-
+		var inputs = document.getElementsByClassName("ticket")
+		var users = document.getElementsByClassName("users")
+		var valores = ''
+		var usuarios = ''
+		var i = 0
+		for (i; i < inputs.length; i++ ){
 			if(i === 0){
-    		valores = inputs[i].value
+			valores = inputs[i].value
+			usuarios = users[i].value
 			} else {
 				valores = valores +',' + inputs[i].value
+				usuarios = usuarios +',' + users[i].value
 			}
-
 		}
+		
 		document.getElementById("intTicket").value = valores
-	}
-
-	function set_users() {
-
-		for (e; e >= inputs2.length; e++ ){
-
-			if(e === 0){
-    		usuarios = inputs2[e].value
-			} else {
-				usuarios = usuarios +',' + inputs2[e].value
-			}
-
-		}
 		document.getElementById("intUser").value = usuarios
 	}
 
+
 	setInterval(set_ticket,500)
-	setInterval(set_users,500)
+
+</script>
+
+<script>
+
+	// function set_users() {
+
+	// 	var inputs2 = document.getElementsByClassName("users")
+	// 	var usuarios = ''
+	// 	var e = 0
+	// 	console.log("entrando al for")
+	// 	for (e; e < inputs2.length; e++ ){
+	// 		console.log("entro al for")
+	// 		if(e === 0){
+	// 			console.log("entro al if con valor 0")
+    // 		usuarios = inputs2[e].value
+	// 		} else {
+	// 			console.log("entro al if con valor mayor a 0")
+	// 			usuarios = usuarios +',' + inputs2[e].value
+	// 		}
+
+	// 	}
+	// 	console.log(usuarios)
+	// 	document.getElementById("intUser").value = usuarios
+	// }
+	// setInterval(set_users,500)
 
 </script>

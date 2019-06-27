@@ -42,16 +42,55 @@ class SupervisorController < ApplicationController
         redirect_to supervisor_index_path
     end
 
-    def masivo
-
+    def contactar
+        @user = User.find(params[:id])
         @atraccion = Atraccion.find(params[:atc])
-        @usuarios = params[:usuarios]
+        UserMailer.call_user_mail(@user, @atraccion).deliver
 
-        @usuarios.split(',').each do |u|
+        redirect_to supervisor_index_path
+    end
+
+    def masivo
+        @usuarios = params[:usuarios]
+        @usuarios.split(",").each do |u|
             @user = User.find(u)
+            @atraccion = Atraccion.find(params[:atc])
             UserMailer.call_user_mail(@user, @atraccion).deliver
         end
 
         redirect_to supervisor_index_path
+    end
+
+    def servidos
+        @tickets = params[:tickets_id]
+        @tickets.split(",").each do |t|
+            @estado = TicketEstado.new
+            @estado.estados_id = params[:estado]
+            @estado.tickets_id = t
+            @estado.save
+        end
+        redirect_to supervisor_index_path
+        
+    end
+
+    def cambiar_estado_masivo
+
+        @atr = params[:atraccion]
+        @tickets = params[:tickets_id]
+        @usuarios = params[:usuarios].split(",")
+        @cont = 0
+        @tickets.split(",").each do |t|
+            @estado = TicketEstado.new
+            @estado.estados_id = params[:estado]
+            @estado.tickets_id = t
+            @estado.save
+
+            @user = User.find(@usuarios[@cont])
+            @atraccion = Atraccion.find(@atr)
+            UserMailer.call_user_mail(@user, @atraccion).deliver
+            @cont += 1
+        end
+        redirect_to supervisor_index_path
+        
     end
 end

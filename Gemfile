@@ -77,3 +77,6 @@ gem 'caracal'
 
 # Amazon
 gem 'aws-sdk'
+
+# jQuery
+gem 'jquery-rails'

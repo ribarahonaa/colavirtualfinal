@@ -29,5 +29,9 @@ Rails.application.routes.draw do
   get 'supervisor/pausar'
   get 'supervisor/play'
   get 'supervisor/llamar'
+  get 'supervisor/contactar'
   get 'supervisor/masivo'
+  get 'supervisor/cambiar_estado_masivo'
+  get 'supervisor/servidos'
+  
 end
