@@ -37,7 +37,7 @@
                   <% @stat = Stat.where("atraccion_id = #{a.id} AND created_at  BETWEEN '#{Date.today.beginning_of_day}' AND '#{Date.today.end_of_day}'") %>
                   <tr>
                     <td> <%= a.nombre_atc %> </td>
-                    <td> <%= Stat.where("atraccion_id = #{a.id} AND created_at  BETWEEN '#{Date.today.beginning_of_day}' AND '#{Date.today.end_of_day}' ").count %> </td>
+                    <td> <%= Stat.where("atraccion_id = #{a.id} AND created_at  BETWEEN '#{Date.today.beginning_of_day}' AND '#{Date.today.end_of_day}'").count %> </td>
                     <td> 12:00 </td>
                     <td> 19:00 </td>
                     <td>

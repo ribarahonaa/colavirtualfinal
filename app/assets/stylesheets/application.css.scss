@@ -410,6 +410,10 @@ tr:hover td{
   height: 40px;
   border-radius: 20px;
 }
+.sel{
+  width: 140px;
+  
+}
 
 @media (max-width:580px){
 
@@ -457,6 +461,8 @@ tr:hover td{
   
     width: 100%;
   }
+
+  
   .barra3{
     
     overflow-x: auto;
@@ -499,4 +505,17 @@ tr:hover td{
   background: rgba(255, 255, 255, 0.671);
   border-radius: 15px;
   padding: 40px 50px 40px 50px;
+}
+
+.wrap-roles{
+  
+  width: 300px;
+  background: rgba(255, 255, 255, 0.671);
+  border-radius: 15px;
+  padding: 40px 50px 40px 50px;
+}
+.container-roles{
+   
+  padding-left: 5%;
+
 }

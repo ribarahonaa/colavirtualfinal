@@ -10,12 +10,13 @@
 				<label>Correo: <%= @user.email %></label><br>
 				<label>Telefono: <%= @user.phone %></label><br>
 
-					<label>Rol:</label>
-					<select class="form-control" id="exampleFormControlSelect1">
+					<label>Rol:
+					<select class="form-control sel" id="exampleFormControlSelect1">
 					<% @group.each do |g| %>
 						<option value="<%=g.id%>"><%= g.kind %></option>
 					<% end %>
-					</select>
+					</select></label>
+					<br>
 				<form action="<%= administrador_asignarrol_path %>" method="get">
 					<input type="hidden" name="grupo" id="grupo">
 					<input type="hidden" name="usuario" value="<%= @user.id %>">
@@ -25,8 +26,8 @@
 				</form>
 			</div>
 		</div>
-
-		<div class="wrap-ed">
+	<div class="container-roles ">
+		<div class="wrap-roles">
 			<h2>Roles Asignados</h2>
 			<div class="ed-form">
 				<table>
@@ -64,6 +65,7 @@
 					</tbody>
 				</table>
 			</div>
+		</div>
 		</div>
 
 	</div>
