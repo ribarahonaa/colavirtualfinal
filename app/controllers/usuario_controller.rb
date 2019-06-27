@@ -4,7 +4,8 @@ class UsuarioController < ApplicationController
       @atraccions_default = Gmaps4rails.build_markers(Atraccion.all) do |plot, marker|  
          marker.lat plot.latitude  
          marker.lng plot.longitude  
-		 marker.infowindow render_to_string(:locals => {:nombre_atc => plot.nombre_atc})  
+		 marker.title plot.nombre_atc
+		 
       end  
 	end
 

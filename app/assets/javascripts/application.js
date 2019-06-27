@@ -39,6 +39,7 @@ function initMap2() {
         position: myCoords,
         animation: google.maps.Animation.DROP,
         map: map,
+        
         draggable: true
     });
     markers.push(marker);
