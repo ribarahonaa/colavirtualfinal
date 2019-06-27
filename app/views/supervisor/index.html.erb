@@ -61,26 +61,33 @@
 								</tbody>
 				
 					</table>
+					
 			<% if @c == @a%>
-					<form action="<%=supervisor_cambiar_estado_masivo_path%>" method="get">
+				<div class="line">
+					<form  action="<%=supervisor_cambiar_estado_masivo_path%>" method="get">
 						<input type="hidden" name="tickets_id" id="intTicket">
 						<input type="hidden" name="estado" value="2">
 						<input type="hidden" name="atraccion" value="<%=@atr.id%>">
 						<input type="hidden" name="usuarios" id="intUser">
 						<input type="submit" value="Llamar a servicio" class="btn btn-primary">
 					</form>
+				</div>	
 			<% else %>
-					<form action="<%=supervisor_servidos_path%>" method="get">
+				<div class="line">
+					<div class="boton-cola ">
+					<form class="boton-cola " action="<%=supervisor_servidos_path%>" method="get">
 						<input type="hidden" name="tickets_id" id="intTicket">
 						<input type="hidden" name="estado" value="3">
 						<input type="submit" value="Servido" class="btn btn-primary">
 					</form>
-						<br>
+					</div>
+						
 					<form action="<%=supervisor_masivo_path%>" method="get">
 						<input type="hidden" name="usuarios" id="intUser">
 						<input type="hidden" name="atc" value="<%=@atr.id%>">
 						<input type="submit" value="Contactar a Todos" class="btn btn-primary">
 					</form>
+				</div>
 			<% end %>
 				</div>
 		</div>
