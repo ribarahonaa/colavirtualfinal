@@ -34,10 +34,10 @@
               </thead>
               <tbody>
                 <% @atraccion.each do |a| %>
-                  <% @stat = Stat.where("atraccion_id = #{a.id}") %>
+                  <% @stat = Stat.where("atraccion_id = #{a.id} AND created_at  BETWEEN '#{Date.today.beginning_of_day}' AND '#{Date.today.end_of_day}'") %>
                   <tr>
                     <td> <%= a.nombre_atc %> </td>
-                    <td> <%= Stat.where("atraccion_id = #{a.id}").count %> </td>
+                    <td> <%= Stat.where("atraccion_id = #{a.id} AND created_at  BETWEEN '#{Date.today.beginning_of_day}' AND '#{Date.today.end_of_day}' ").count %> </td>
                     <td> 12:00 </td>
                     <td> 19:00 </td>
                     <td>
@@ -93,10 +93,163 @@
       
     </div>
     <div class="tab-pane fade" id="mensual" role="tabpanel" aria-labelledby="mensual-tab">
-      Semanal
+      
+          <div class="container-info1" >
+            <div class="wrap-info" > 
+            <div class="barra-info container">
+              <table id="mens" class="display">
+              <thead>
+                <tr>
+                  <th>Atraccion</th>
+                  <th>Cantidad de Personas</th>
+                  <th>Hora Inicio</th>
+                  <th>Hora Cierre</th>
+                  <th>Omitidos</th>
+                  <th>Abortados</th>
+                  <th>Atendidos</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @atraccion.each do |a| %>
+                  <% @stat = Stat.where("atraccion_id = #{a.id}",Date.today.beginning_of_week,Date.today.end_of_week) %>
+                  <tr>
+                    <td> <%= a.nombre_atc %> </td>
+                    <td> <%= Stat.where("atraccion_id = #{a.id}").count %> </td>
+                    <td> 12:00 </td>
+                    <td> 19:00 </td>
+                    <td>
+                      <%@omitido = 0%>
+                      <% if @stat%>
+                        <%@stat.each do |s|%>
+                          <% @tktest = TicketEstado.find_by(tickets_id: s.ticket_id, estados_id: 4) %>
+                          <% if @tktest %>
+                            <% @omitido += 1 %>
+                          <% end %>
+                        <%end%>
+                        <%= @omitido %>
+                      <% else %>
+                        0
+                      <% end %>
+                    </td>
+                    <td>
+                      <%@abort = 0%>
+                      <% if @stat%>
+                        <%@stat.each do |s|%>
+                          <% @tktest = TicketEstado.find_by(tickets_id: s.ticket_id, estados_id: 5) %>
+                          <% if @tktest %>
+                            <% @abort += 1 %>
+                          <% end %>
+                        <%end%>
+                        <%= @abort %>
+                      <% else %>
+                        0
+                      <% end %>
+                    </td>
+                    <td>
+                      <%@atendido = 0%>
+                      <% if @stat%>
+                        <%@stat.each do |s|%>
+                          <% @tktest = TicketEstado.find_by(tickets_id: s.ticket_id, estados_id: 3) %>
+                          <% if @tktest %>
+                            <% @atendido += 1 %>
+                          <% end %>
+                        <%end%>
+                        <%= @atendido %>
+                      <% else %>
+                        0
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          
+      </div>
+      </div>
+      </div>
+
     </div>
+
     <div class="tab-pane fade" id="anual" role="tabpanel" aria-labelledby="anual-tab">
-      Mensual
+      
+          <div class="container-info1" >
+            <div class="wrap-info" > 
+            <div class="barra-info container">
+              <table id="año" class="display">
+              <thead>
+                <tr>
+                  <th>Atraccion</th>
+                  <th>Cantidad de Personas</th>
+                  <th>Hora Inicio</th>
+                  <th>Hora Cierre</th>
+                  <th>Omitidos</th>
+                  <th>Abortados</th>
+                  <th>Atendidos</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @atraccion.each do |a| %>
+                  <% @stat = Stat.where("atraccion_id = #{a.id}",Date.today.beginning_of_month,Date.today.end_of_month) %>
+                  <tr>
+                    <td> <%= a.nombre_atc %> </td>
+                    <td> <%= Stat.where("atraccion_id = #{a.id}").count %> </td>
+                    <td> 12:00 </td>
+                    <td> 19:00 </td>
+                    <td>
+                      <%@omitido = 0%>
+                      <% if @stat%>
+                        <%@stat.each do |s|%>
+                          <% @tktest = TicketEstado.find_by(tickets_id: s.ticket_id, estados_id: 4) %>
+                          <% if @tktest %>
+                            <% @omitido += 1 %>
+                          <% end %>
+                        <%end%>
+                        <%= @omitido %>
+                      <% else %>
+                        0
+                      <% end %>
+                    </td>
+                    <td>
+                      <%@abort = 0%>
+                      <% if @stat%>
+                        <%@stat.each do |s|%>
+                          <% @tktest = TicketEstado.find_by(tickets_id: s.ticket_id, estados_id: 5) %>
+                          <% if @tktest %>
+                            <% @abort += 1 %>
+                          <% end %>
+                        <%end%>
+                        <%= @abort %>
+                      <% else %>
+                        0
+                      <% end %>
+                    </td>
+                    <td>
+                      <%@atendido = 0%>
+                      <% if @stat%>
+                        <%@stat.each do |s|%>
+                          <% @tktest = TicketEstado.find_by(tickets_id: s.ticket_id, estados_id: 3) %>
+                          <% if @tktest %>
+                            <% @atendido += 1 %>
+                          <% end %>
+                        <%end%>
+                        <%= @atendido %>
+                      <% else %>
+                        0
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          
+      </div>
+      </div>
+      </div>
+
+
+
+
+
     </div>
   </div>
 
