@@ -31,6 +31,10 @@ class SupervisorController < ApplicationController
     end
 
     def llamar
+        @estado = TicketEstado.new
+        @estado.estados_id = params[:estado]
+        @estado.tickets_id = params[:ticket]
+        @estado.save
         @user = User.find(params[:id])
         @atraccion = Atraccion.find(params[:atc])
         UserMailer.call_user_mail(@user, @atraccion).deliver

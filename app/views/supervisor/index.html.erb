@@ -34,15 +34,19 @@
 													<tr>
 														<td><input type="text" value="<%= sp.tickets_id %>" class="ticket"/><%= sp.tickets_id %></td>
 														<td><%= @est.descripcion_est %></td>
-														<%if @est.id == 1%>
-															<td><%= link_to "Llamar a servicio", {controller: "supervisor", action: "cambiar_estado", estado: 2, ticket: sp.tickets_id } %></td>
-														<%else%>
+														<%if @est.id == 2%>
 															<td><%= link_to "Servido", {controller: "supervisor", action: "cambiar_estado", estado: 3, ticket: sp.tickets_id } %></td>
+														<%else%>
+															<td>En Espera</td>
 														<%end%>
 														<td><%= link_to "Omitir", {controller: "supervisor", action: "cambiar_estado", estado: 4, ticket: sp.tickets_id } %></td>
 														<%@user = User.find(sp.users_id)%>
+														<%if @est.id == 1%>
 														<input type="hidden" value="<%=@user.id%>" class="users" >
-														<td><%= link_to "Contactar", {controller: "supervisor", action: "llamar", id: @user.id, atc: @atr.id} %></td>
+														<td><%= link_to "Contactar", {controller: "supervisor", action: "llamar", id: @user.id, atc: @atr.id, estado: 2 , ticket: sp.tickets_id} %></td>
+														<%else%>
+															<td>Contactado</td>
+														<%end%>
 													</tr>
 													<%@count += 1%>
 												<% end %>
@@ -55,6 +59,11 @@
 					<form>
 						<input type="hidden" name="tickets_id" id="intTicket">
 						<input type="submit" value="Llamar a servicio" class="btn btn-primary">
+					</form>
+						<br>
+					<form>
+						<input type="hidden" name="tickets_id" id="intTicket">
+						<input type="submit" value="Servido" class="btn btn-primary">
 					</form>
 						<br>
 					<form action="<%=supervisor_masivo_path%>" method="get">
