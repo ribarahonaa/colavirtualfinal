@@ -97,7 +97,7 @@
           <div class="container-info1" >
             <div class="wrap-info" > 
             <div class="barra-info container">
-              <table id="mens" class="display">
+              <table id="semana" class="display">
               <thead>
                 <tr>
                   <th>Atraccion</th>
@@ -111,10 +111,10 @@
               </thead>
               <tbody>
                 <% @atraccion.each do |a| %>
-                  <% @stat = Stat.where("atraccion_id = #{a.id}",Date.today.beginning_of_week,Date.today.end_of_week) %>
+                  <% @stat = Stat.where("atraccion_id = #{a.id} AND created_at  BETWEEN '#{Date.today.beginning_of_week}' AND '#{Date.today.end_of_week}'") %>
                   <tr>
                     <td> <%= a.nombre_atc %> </td>
-                    <td> <%= Stat.where("atraccion_id = #{a.id}").count %> </td>
+                    <td> <%= Stat.where("atraccion_id = #{a.id} AND created_at  BETWEEN '#{Date.today.beginning_of_week}' AND '#{Date.today.end_of_week}'").count %> </td>
                     <td> 12:00 </td>
                     <td> 19:00 </td>
                     <td>
@@ -175,7 +175,7 @@
           <div class="container-info1" >
             <div class="wrap-info" > 
             <div class="barra-info container">
-              <table id="año" class="display">
+              <table id="mes" class="display">
               <thead>
                 <tr>
                   <th>Atraccion</th>
@@ -189,10 +189,10 @@
               </thead>
               <tbody>
                 <% @atraccion.each do |a| %>
-                  <% @stat = Stat.where("atraccion_id = #{a.id}",Date.today.beginning_of_month,Date.today.end_of_month) %>
+                  <% @stat = Stat.where("atraccion_id = #{a.id} AND created_at  BETWEEN '#{Date.today.beginning_of_month}' AND '#{Date.today.end_of_month}'") %>
                   <tr>
                     <td> <%= a.nombre_atc %> </td>
-                    <td> <%= Stat.where("atraccion_id = #{a.id}").count %> </td>
+                    <td> <%= Stat.where("atraccion_id = #{a.id} AND created_at  BETWEEN '#{Date.today.beginning_of_month}' AND '#{Date.today.end_of_month}'").count %> </td>
                     <td> 12:00 </td>
                     <td> 19:00 </td>
                     <td>
@@ -263,5 +263,13 @@
 
   $(document).ready( function () {
       $('#diario').DataTable();
+  } );
+
+  $(document).ready( function () {
+      $('#semana').DataTable();
+  } );
+
+  $(document).ready( function () {
+      $('#mes').DataTable();
   } );
 </script>
