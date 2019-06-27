@@ -32,7 +32,7 @@
 											<%if @count < @atr.capacidad_atc %>
 												<%if @est.id != 4 && @est.id != 5 && @est.id != 3%>
 													<tr>
-														<td><input type="hidden" value="<%= sp.tickets_id %>" class="ticket"/><%= sp.tickets_id %></td>
+														<td><input type="text" value="<%= sp.tickets_id %>" class="ticket"/><%= sp.tickets_id %></td>
 														<td><%= @est.descripcion_est %></td>
 														<%if @est.id == 1%>
 															<td><%= link_to "Llamar a servicio", {controller: "supervisor", action: "cambiar_estado", estado: 2, ticket: sp.tickets_id } %></td>
@@ -41,8 +41,8 @@
 														<%end%>
 														<td><%= link_to "Omitir", {controller: "supervisor", action: "cambiar_estado", estado: 4, ticket: sp.tickets_id } %></td>
 														<%@user = User.find(sp.users_id)%>
-														<input type="hidden" name="pass_cantidad" id="intTicket">
-														<td><%= link_to "Llamar", {controller: "supervisor", action: "llamar", id: @user.id, atc: @atr.id} %></td>
+														<%# <input type="text" value="@user.id" class="users" > %>
+														<td><%= link_to "Contactar", {controller: "supervisor", action: "llamar", id: @user.id, atc: @atr.id} %></td>
 													</tr>
 													<%@count += 1%>
 												<% end %>
@@ -51,6 +51,16 @@
 								</tbody>
 				
 					</table>
+
+					<form>
+						<input type="text" name="tickets_id" id="intTicket">
+						<input type="submit" value="Llamar a servicio">
+					</form>
+
+					<%# <form>
+						<input type="text" name="usuarios" id="intUser">
+						<input type="submit" value="Contactar a Todos">
+					</form> %>
 				</div>
 		</div>
 	</div>		
@@ -61,20 +71,26 @@
 <% end %>
 
 <script>
-
+	
 	var inputs = document.getElementsByClassName("ticket")
 	var valores = ''
-	
-	function set_valor() {
-		for (var i = 0; i > inputs.lentgh; i++ ){
+
+	function set_ticket() {
+
+		for (var i = 0; i >= inputs.length; i++ ){
+
 			if(i === 0){
     		valores = inputs[i].value
-   		} else {
-    		valores = valores +',' + inputs[i].value
-   			}
+			} else {
+				valores = valores +',' + inputs[i].value
+			}
+
 		}
 		document.getElementById("intTicket").value = valores
-  	return valores
+		return valores
 	}
+
+
+	setInterval(set_ticket,500)
 
 </script>
