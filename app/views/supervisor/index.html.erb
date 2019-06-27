@@ -53,14 +53,14 @@
 					</table>
 
 					<form>
-						<input type="text" name="tickets_id" id="intTicket">
-						<input type="submit" value="Llamar a servicio">
+						<input type="hidden" name="tickets_id" id="intTicket">
+						<input type="submit" value="Llamar a servicio" class="btn btn-primary">
 					</form>
-
+						<br>
 					<form action="<%=supervisor_masivo_path%>" method="get">
 						<input type="hidden" name="usuarios" id="intUser">
 						<input type="hidden" name="atc" value="<%=@atr.id%>">
-						<input type="submit" value="Contactar a Todos">
+						<input type="submit" value="Contactar a Todos" class="btn btn-primary">
 					</form>
 				</div>
 		</div>
