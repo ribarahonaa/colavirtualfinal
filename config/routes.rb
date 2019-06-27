@@ -29,4 +29,5 @@ Rails.application.routes.draw do
   get 'supervisor/pausar'
   get 'supervisor/play'
   get 'supervisor/llamar'
+  get 'supervisor/masivo'
 end

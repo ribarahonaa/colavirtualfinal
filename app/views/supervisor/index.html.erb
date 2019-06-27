@@ -41,7 +41,7 @@
 														<%end%>
 														<td><%= link_to "Omitir", {controller: "supervisor", action: "cambiar_estado", estado: 4, ticket: sp.tickets_id } %></td>
 														<%@user = User.find(sp.users_id)%>
-														<%# <input type="text" value="@user.id" class="users" > %>
+														<input type="hidden" value="<%=@user.id%>" class="users" >
 														<td><%= link_to "Contactar", {controller: "supervisor", action: "llamar", id: @user.id, atc: @atr.id} %></td>
 													</tr>
 													<%@count += 1%>
@@ -57,10 +57,11 @@
 						<input type="submit" value="Llamar a servicio">
 					</form>
 
-					<%# <form>
-						<input type="text" name="usuarios" id="intUser">
+					<form action="<%=supervisor_masivo_path%>" method="get">
+						<input type="hidden" name="usuarios" id="intUser">
+						<input type="hidden" name="atc" value="<%=@atr.id%>">
 						<input type="submit" value="Contactar a Todos">
-					</form> %>
+					</form>
 				</div>
 		</div>
 	</div>		
@@ -73,11 +74,15 @@
 <script>
 	
 	var inputs = document.getElementsByClassName("ticket")
+	var inputs2 = document.getElementsByClassName("users")
 	var valores = ''
+	var usuarios = ''
+	var i = 0
+	var e = 0
 
 	function set_ticket() {
 
-		for (var i = 0; i >= inputs.length; i++ ){
+		for (i; i >= inputs.length; i++ ){
 
 			if(i === 0){
     		valores = inputs[i].value
@@ -87,10 +92,23 @@
 
 		}
 		document.getElementById("intTicket").value = valores
-		return valores
 	}
 
+	function set_users() {
+
+		for (e; e >= inputs2.length; e++ ){
+
+			if(e === 0){
+    		usuarios = inputs2[e].value
+			} else {
+				usuarios = usuarios +',' + inputs2[e].value
+			}
+
+		}
+		document.getElementById("intUser").value = usuarios
+	}
 
 	setInterval(set_ticket,500)
+	setInterval(set_users,500)
 
 </script>
