@@ -11,89 +11,91 @@
 					<%=link_to "Iniciar <i class='fas fa-play'></i>".html_safe ,{controller: "supervisor", action:"play", atc: @atr.id}, class: "btn btn-outline-warning"%>
 				<% end %>
 			</h1>
-	<% if @count > 0%>
-		<div class="container-cola " >
-			<div class="wrap-cola ">
-				<h2 style="text-align:center;"> Lista de usuarios </h2>
-					<div class="barra3 container">
-					<% @c = 0%>
-					<% @a = 0%>
-						<table>
-									<thead>
-										<tr>
-											<th>Numero</th>
-											<th>Estado</th>
-											<th>Servicio</th>
-											<th>Omitir</th>
-											<th>Contactar</th>
-										</tr>
-									</thead>
-									<tbody>
-							<% @supervisor.each do |sp| %>
-											<% @tktest = TicketEstado.where("tickets_id = #{sp.tickets_id}").last %>
-											<% @est = Estado.find(@tktest.estados_id)  %>
-												<%if @count < @atr.capacidad_atc %>
-													<%if @est.id != 4 && @est.id != 5 && @est.id != 3%>
-														<tr>
-															<td><input type="hidden" value="<%= sp.tickets_id %>" class="ticket"/><%= sp.tickets_id %></td>
-															<td><%= @est.descripcion_est %></td>
-															<%if @est.id == 2%>
-																<%@a += 1%>
-																<td><%= link_to "Servido", {controller: "supervisor", action: "cambiar_estado", estado: 3, ticket: sp.tickets_id } %></td>
-															<%else%>
-																<%@a = 0%>
-																<td>En Espera</td>
-															<%end%>
-															<td><%= link_to "Omitir", {controller: "supervisor", action: "cambiar_estado", estado: 4, ticket: sp.tickets_id } %></td>
-															<%@user = User.find(sp.users_id)%>
-															<input type="hidden" value="<%=@user.id%>" class="users"/>
-															<%if @est.id == 1%>
-																<%@c = 0%>
-																<td><%= link_to "Contactar", {controller: "supervisor", action: "llamar", id: @user.id, atc: @atr.id, estado: 2 , ticket: sp.tickets_id} %></td>
-															<%else%>
-																<%@c += 2%>
-																<td><%= link_to "Contactar", {controller: "supervisor", action: "contactar", id: @user.id, atc: @atr.id} %></td>
-															<%end%>
-														</tr>
-														<%@count += 1%>
-													<% end %>
-												<%end%>
-							<% end %>
-									</tbody>
-					
-						</table>
+		<% if @count > 0%>
+			<div class="container-cola " >
+				<div class="wrap-cola ">
+					<h2 style="text-align:center;"> Lista de usuarios </h2>
+						<div class="barra3 container">
+						<% @c = 0%>
+						<% @a = 0%>
+							<table>
+										<thead>
+											<tr>
+												<th>Numero</th>
+												<th>Estado</th>
+												<th>Servicio</th>
+												<th>Omitir</th>
+												<th>Contactar</th>
+											</tr>
+										</thead>
+										<tbody>
+								<% @supervisor.each do |sp| %>
+												<% @tktest = TicketEstado.where("tickets_id = #{sp.tickets_id}").last %>
+												<% @est = Estado.find(@tktest.estados_id)  %>
+													<%if @count < @atr.capacidad_atc %>
+														<%if @est.id != 4 && @est.id != 5 && @est.id != 3%>
+															<tr>
+																<td><input type="hidden" value="<%= sp.tickets_id %>" class="ticket"/><%= sp.tickets_id %></td>
+																<td><%= @est.descripcion_est %></td>
+																<%if @est.id == 2%>
+																	<%@a += 1%>
+																	<td><%= link_to "Servido", {controller: "supervisor", action: "cambiar_estado", estado: 3, ticket: sp.tickets_id } %></td>
+																<%else%>
+																	<%@a = 0%>
+																	<td>En Espera</td>
+																<%end%>
+																<td><%= link_to "Omitir", {controller: "supervisor", action: "cambiar_estado", estado: 4, ticket: sp.tickets_id } %></td>
+																<%@user = User.find(sp.users_id)%>
+																<input type="hidden" value="<%=@user.id%>" class="users"/>
+																<%if @est.id == 1%>
+																	<%@c = 0%>
+																	<td><%= link_to "Contactar", {controller: "supervisor", action: "llamar", id: @user.id, atc: @atr.id, estado: 2 , ticket: sp.tickets_id} %></td>
+																<%else%>
+																	<%@c += 2%>
+																	<td><%= link_to "Contactar", {controller: "supervisor", action: "contactar", id: @user.id, atc: @atr.id} %></td>
+																<%end%>
+															</tr>
+															<%@count += 1%>
+														<% end %>
+													<%end%>
+								<% end %>
+										</tbody>
 						
-				<% if @c == @a%>
-					<div class="line">
-						<form  action="<%=supervisor_cambiar_estado_masivo_path%>" method="get">
-							<input type="hidden" name="tickets_id" id="intTicket">
-							<input type="hidden" name="estado" value="2">
-							<input type="hidden" name="atraccion" value="<%=@atr.id%>">
-							<input type="hidden" name="usuarios" id="intUser">
-							<input type="submit" value="Llamar a servicio" class="btn btn-primary">
-						</form>
-					</div>	
-				<% else %>
-					<div class="line">
-						<div class="boton-cola ">
-						<form class="boton-cola " action="<%=supervisor_servidos_path%>" method="get">
-							<input type="hidden" name="tickets_id" id="intTicket">
-							<input type="hidden" name="estado" value="3">
-							<input type="submit" value="Servido" class="btn btn-primary">
-						</form>
-						</div>
+							</table>
 							
-						<form action="<%=supervisor_masivo_path%>" method="get">
-							<input type="hidden" name="usuarios" id="intUser">
-							<input type="hidden" name="atc" value="<%=@atr.id%>">
-							<input type="submit" value="Contactar a Todos" class="btn btn-primary">
-						</form>
-					</div>
-				<% end %>
-					</div>
+					<% if @c == @a%>
+						<div class="line">
+							<form  action="<%=supervisor_cambiar_estado_masivo_path%>" method="get">
+								<input type="hidden" name="tickets_id" id="intTicket">
+								<input type="hidden" name="estado" value="2">
+								<input type="hidden" name="atraccion" value="<%=@atr.id%>">
+								<input type="hidden" name="usuarios" id="intUser">
+								<input type="submit" value="Llamar a servicio" class="btn btn-primary">
+							</form>
+						</div>	
+					<% else %>
+						<div class="line">
+							<div class="boton-cola ">
+							<form class="boton-cola " action="<%=supervisor_servidos_path%>" method="get">
+								<input type="hidden" name="tickets_id" id="intTicket">
+								<input type="hidden" name="estado" value="3">
+								<input type="submit" value="Servido" class="btn btn-primary">
+							</form>
+							</div>
+								
+							<form action="<%=supervisor_masivo_path%>" method="get">
+								<input type="hidden" name="usuarios" id="intUser">
+								<input type="hidden" name="atc" value="<%=@atr.id%>">
+								<input type="submit" value="Contactar a Todos" class="btn btn-primary">
+							</form>
+						</div>
+					<% end %>
+						</div>
+				</div>
 			</div>
-		</div>
-	<% end %>	
+		<% else %>
+			<h3>No hay nadie a la espera</h3>
+		<% end %>
     <% else %>  
         <h3> Sin atraccion asignada </h3>
     <% end %>   
